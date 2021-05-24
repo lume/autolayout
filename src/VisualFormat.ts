@@ -1,7 +1,7 @@
-import parser from './parser/parser';
-import parserExt from './parser/parserExt';
-import Attribute from './Attribute';
-import Relation from './Relation';
+import parser from './parser/parser.js';
+import parserExt from './parser/parserExt.js';
+import Attribute from './Attribute.js';
+import Relation from './Relation.js';
 
 const Orientation = {
     HORIZONTAL: 1,
@@ -188,7 +188,7 @@ function _processStackView(context, name, subView) {
  * of view-names (e.g. [child1, child2, child3, ...]).
  * @private
  */
-function _getRange(name, range) {
+function _getRange(name: string, range) {
     if (range === true) {
         range = name.match(/\.\.\d+$/);
         if (range) {
@@ -200,10 +200,12 @@ function _getRange(name, range) {
         return [name];
     }
     var start = name.match(/\d+$/);
-    var res = [];
+    var res: string[] = [];
     var i;
     if (start) {
         name = name.substring(0, name.length - start[0].length);
+        // FIXME
+        // @ts-expect-error what the heck is being passed into parseInt here?
         for (i = parseInt(start); i <= range; i++) {
             res.push(name + i);
         }
@@ -223,8 +225,8 @@ function _getRange(name, range) {
  */
 function _processCascade(context, cascade, parentItem) {
     const stackView = parentItem ? parentItem.view : null;
-    const subViews = [];
-    let curViews = [];
+    const subViews: any[] = [];
+    let curViews: any[] = [];
     let subView;
     if (stackView) {
         cascade.push({view: stackView});
@@ -247,9 +249,13 @@ function _processCascade(context, cascade, parentItem) {
                     //
                     if (curView !== stackView) {
                         subViews.push(curView);
+                        // FIXME
+                        // @ts-expect-error
                         subView = context.subViews[curView];
                         if (!subView) {
                             subView = {orientations: 0};
+                            // FIXME
+                            // @ts-expect-error
                             context.subViews[curView] = subView;
                         }
                         subView.orientations = subView.orientations | context.orientation;
@@ -349,6 +355,8 @@ function _processCascade(context, cascade, parentItem) {
         }
         else if (subView.stack) {
             const err = new Error('A stack named "' + stackView + '" has already been created');
+            // FIXME
+            // @ts-expect-error
             err.column = parentItem.$parserOffset + 1;
             throw err;
         }
@@ -399,10 +407,16 @@ class VisualFormat {
         if (options && options.outFormat === 'raw') {
             return [res];
         }
-        let context = {
+        let context: {
+            constraints: any[]
+            lineIndex: number,
+            subViews: {},
+            orientation?: number,
+            horizontal?: boolean
+        } = {
             constraints: [],
             lineIndex: (options ? options.lineIndex : undefined) || 1,
-            subViews: (options ? options.subViews : undefined) || {}
+            subViews: (options ? options.subViews : undefined) || {},
         };
         if (res.type === 'attribute') {
             for (let n = 0; n < res.attributes.length; n++) {
@@ -440,7 +454,7 @@ class VisualFormat {
                 constraints: context.constraints,
                 lineIndex: context.lineIndex,
                 subViews: context.subViews,
-                orientation: Orientation.VERTICAL
+                orientation: Orientation.VERTICAL,
               };
               _processCascade(context, res.cascade, null);
               break;
@@ -483,7 +497,7 @@ class VisualFormat {
         // search for line-endings, and treat each line as a seperate visual-format.
         visualFormat = Array.isArray(visualFormat) ? visualFormat : [visualFormat];
         let lines;
-        let constraints = [];
+        let constraints: any[] = [];
         let lineIndex = 0;
         let line;
         const parseOptions = {
@@ -556,11 +570,16 @@ class VisualFormat {
      * @param {String} [options.prefix] When specified, also processes the categories using that prefix (e.g. "-dev-viewport max-height:10").
      * @return {Object} meta-info
      */
-    static parseMetaInfo(visualFormat, options) {
+    static parseMetaInfo(visualFormat, options?: any) {
         const lineSeparator = (options && options.lineSeparator) ? options.lineSeparator : '\n';
         const prefix = options ? options.prefix : undefined;
         visualFormat = Array.isArray(visualFormat) ? visualFormat : [visualFormat];
-        const metaInfo = {};
+        const metaInfo: {
+            viewport?: Record<string, any>
+            widths?: Record<string, any>
+            heights?: Record<string, any>
+            spacing?: any;
+        } = {};
         var key;
         for (var k = 0; k < visualFormat.length; k++) {
             const lines = visualFormat[k].split(lineSeparator);
@@ -618,6 +637,8 @@ class VisualFormat {
             for (key in metaInfo.widths) {
                 const width = (metaInfo.widths[key] === 'intrinsic') ? true : parseInt(metaInfo.widths[key]);
                 metaInfo.widths[key] = width;
+                // FIXME
+                // @ts-expect-error
                 if ((width === undefined) || isNaN(width)) {
                     delete metaInfo.widths[key];
                 }
@@ -627,6 +648,8 @@ class VisualFormat {
             for (key in metaInfo.heights) {
                 const height = (metaInfo.heights[key] === 'intrinsic') ? true : parseInt(metaInfo.heights[key]);
                 metaInfo.heights[key] = height;
+                // FIXME
+                // @ts-expect-error
                 if ((height === undefined) || isNaN(height)) {
                     delete metaInfo.heights[key];
                 }

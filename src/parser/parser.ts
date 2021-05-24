@@ -6,12 +6,12 @@ export default (function() {
    */
 
   function peg$subclass(child, parent) {
-    function ctor() { this.constructor = child; }
+    function ctor(this: any) { this.constructor = child; }
     ctor.prototype = parent.prototype;
     child.prototype = new ctor();
   }
 
-  function SyntaxError(message, expected, found, offset, line, column) {
+  function SyntaxError(this: any, message, expected, found, offset, line, column) {
     this.message  = message;
     this.expected = expected;
     this.found    = found;
@@ -96,7 +96,7 @@ export default (function() {
         peg$c53 = function(f, v) { return { view: f + v } },
         peg$c54 = ".",
         peg$c55 = { type: "literal", value: ".", description: "\".\"" },
-        peg$c56 = function(digits, decimals) { return parseFloat(digits.concat(".").concat(decimals).join(""), 10); },
+        peg$c56 = function(digits, decimals) { return parseFloat(digits.concat(".").concat(decimals).join("")); },
         peg$c57 = function(digits) { return parseInt(digits.join(""), 10); },
 
         peg$currPos          = 0,
@@ -104,7 +104,7 @@ export default (function() {
         peg$cachedPos        = 0,
         peg$cachedPosDetails = { line: 1, column: 1, seenCR: false },
         peg$maxFailPos       = 0,
-        peg$maxFailExpected  = [],
+        peg$maxFailExpected  = [] as any[],
         peg$silentFails      = 0,
 
         peg$result;
@@ -1021,7 +1021,7 @@ export default (function() {
     }
 
 
-      function extend(dst) {
+      function extend(dst, ...args: any[]) {
         for (var i = 1; i < arguments.length; i++) {
           for (var k in arguments[i]) {
             dst[k] = arguments[i][k];

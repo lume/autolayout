@@ -1,15 +1,13 @@
 {
-  "name": "autolayout",
+  "name": "@lume/autolayout",
   "version": "0.7.0",
-  "homepage": "https://github.com/IjzerenHein/autolayout.js",
+  "homepage": "https://github.com/lume/autolayout",
   "repository": {
     "type": "git",
-    "url": "git://github.com/IjzerenHein/autolayout.js.git"
+    "url": "git://github.com/lume/autolayout.git"
   },
-  "main": "dist/autolayout.js",
-  "author": {
-    "name": "Hein Rutjes <hrutjes@gmail.com>"
-  },
+  "main": "es/AutoLayout.js",
+  "types": "es/AutoLayout.d.ts",
   "description": "Apple's Auto Layout and Visual Format Language for javascript (using cassowary constraints)",
   "keywords": [
     "autolayout",
@@ -33,7 +31,7 @@
   },
   "files": [
     "src",
-    "dist",
+    "es",
     "LICENSE"
   ],
   "devDependencies": {
@@ -53,17 +51,20 @@
     "grunt-jscs": "^3.0.1",
     "grunt-jsdoc-to-markdown": "^2.0.0",
     "grunt-peg": "1.5.0",
-    "kiwi.js": "^1.0.1",
     "lodash": "^4.17.4",
     "minifyify": "^7.3.4",
     "minimist": "^1.2.0",
     "mocha": "^3.2.0",
-    "platform": "^1.3.1"
+    "platform": "^1.3.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.0-beta"
   },
   "dependencies": {
-    "cassowary": "0.0.2"
+    "@lume/kiwi": "^0.1.0"
   },
   "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rimraf es",
     "test": "mocha"
   }
 }
