@@ -1,37 +1,73 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Autolayout.js</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <img src="logo.png" style="max-width: 100%;">
-      <h2 class="project-tagline">Apple&#39;s Auto Layout and Visual Format Language for Javascript.</h2>
-      <a href="https://github.com/IjzerenHein/autolayout.js" class="btn">View on GitHub</a>
-      <a href="https://github.com/IjzerenHein/autolayout.js/zipball/master" class="btn">Download v0.7.0</a>
-      <a href="https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example" class="btn">Visual Format Editor</a>
-      <a href="https://github.com/IjzerenHein/autolayout.js/blob/master/docs/AutoLayout.md" class="btn">API Documentation</a>
-    </section>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>LUME Autolayout</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen" />
+    </head>
+    <body>
+        <section class="page-header">
+            <img src="logo.png" style="max-width: 100%" />
+            <h2 class="project-tagline">Apple&#39;s Auto Layout and Visual Format Language for Javascript.</h2>
+            <a href="https://github.com/lume/autolayout" class="btn">View on GitHub</a>
+            <a href="https://github.com/lume/autolayout/zipball/master" class="btn">Download v0.7.0</a>
+            <a href="https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example" class="btn"
+                >Visual Format Editor</a
+            >
+            <a href="https://github.com/lume/autolayout/blob/master/docs/AutoLayout.md" class="btn"
+                >API Documentation</a
+            >
+        </section>
 
-    <section class="main-content">
-      <h3>
-<a id="auto-whut-layout" class="anchor" href="#auto-whut-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auto-whut-layout?</h3>
+        <section class="main-content">
+            <h3>
+                <a id="auto-whut-layout" class="anchor" href="#auto-whut-layout" aria-hidden="true"
+                    ><span class="octicon octicon-link"></span></a
+                >Auto-whut-layout?
+            </h3>
 
-<p>AutoLayout.js implements <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">Apple's Auto Layout</a> constraint system and <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html">Visual Format Language</a> in Javascript. Auto layout is a system which lets you perform lay out using mathematical relationships. It is based on the <a href="https://en.wikipedia.org/wiki/Cassowary_(software)">incremental cassowary constraint solving toolkit</a> and uses the awesome <a href="https://github.com/slightlyoff/cassowary.js">Cassowary.js</a> library. AutoLayout.js provides a simple API and programming model for integrating auto layout and VFL into other Javascript technologies, as well as an <a href="https://github.com/IjzerenHein/visualformat-editor">editor</a> for creating layouts using (E)VFL.</p>
+            <p>
+                LUME AutoLayout implements
+                <a
+                    href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html"
+                    >Apple's Auto Layout</a
+                >
+                constraint system and
+                <a
+                    href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html"
+                    >Visual Format Language</a
+                >
+                in Javascript. Auto layout is a system which lets you perform lay out using mathematical relationships.
+                It is based on the
+                <a href="https://en.wikipedia.org/wiki/Cassowary_(software)"
+                    >incremental cassowary constraint solving toolkit</a
+                >
+                and uses the <a href="https://github.com/lume/kiwi">LUME Kiwi</a> library for its Cassowary
+                implementation. LUME AutoLayout provides a simple API and programming model for integrating auto layout
+                and VFL into other Javascript technologies, as well as an
+                <a href="https://github.com/IjzerenHein/visualformat-editor">editor</a> for creating layouts using
+                (E)VFL.
+            </p>
 
-<iframe src="https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example&mode=compact"></iframe>
-<a href="https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example" target="_blank">Click here to open the editor full-screen.</a>
+            <iframe
+                src="https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example&mode=compact"
+            ></iframe>
+            <a
+                href="https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example"
+                target="_blank"
+                >Click here to open the editor full-screen.</a
+            >
 
-<h3>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show us the code!</h3>
+            <h3>
+                <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"
+                    ><span class="octicon octicon-link"></span></a
+                >Show us the code!
+            </h3>
 
-<pre><code>var constraints = AutoLayout.VisualFormat.parse([
+            <pre><code>var constraints = AutoLayout.VisualFormat.parse([
   'H:|[view1(==view2)]-10-[view2]|'
   'V:|[view1,view2]|'
 ], {extended: true});
@@ -41,41 +77,64 @@ console.log(view.subViews.view1); // {left: 0, top: 0, width: 195, height: 500}
 console.log(view.subViews.view2); // {left: 205, top: 0, width: 195, height: 500}
 </code></pre>
 
-The example above creates an auto layout View and populates it with constraints
-from the VFL parser. The View automatically creates sub-views based on the names used in the constraints/vfl. Next, the size of the view is set, which causes the sub-views to resize and re-position. The position and size of the sub-views can then be accessed through the <code>.subViews</code> property.
+            The example above creates an auto layout View and populates it with constraints from the VFL parser. The
+            View automatically creates sub-views based on the names used in the constraints/vfl. Next, the size of the
+            view is set, which causes the sub-views to resize and re-position. The position and size of the sub-views
+            can then be accessed through the <code>.subViews</code> property.
 
-<h3>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h3>
+            <h3>
+                <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"
+                    ><span class="octicon octicon-link"></span></a
+                >Getting started
+            </h3>
 
-<p>If you want to get started with AutoLayout.js, please visit the <a href="https://github.com/IjzerenHein/autolayout.js#getting-started">github page</a>. You can find an example there to get started with <a href="https://github.com/IjzerenHein/autolayout.js/tree/master/examples/DOM">DOM layouting</a> as well as other <a href="https://github.com/IjzerenHein/autolayout.js#additional-resources">useful resources</a>. There is also a <a href="https://overconstrained.slack.com/messages/autolayout-js/">slack channel</a> hosted by <a href="http://overconstrained.io/">overconstrained.io</a>.
+            <p>
+                If you want to get started with LUME AutoLayout, please visit the
+                <a href="https://github.com/lume/autolayout#getting-started">github page</a>. You can find an example
+                there to get started with
+                <a href="https://github.com/lume/autolayout/tree/master/examples/DOM">DOM layouting</a> as well as other
+                <a href="https://github.com/lume/autolayout#additional-resources">useful resources</a>. There is also a
+                <a href="https://discord.gg/EtMDdbztQj">Discord channel</a> in LUME's Discord chat server.
+            </p>
 
+            <h3>
+                <a id="extended-vfl" class="anchor" href="#extended-vfl" aria-hidden="true"
+                    ><span class="octicon octicon-link"></span></a
+                >Extended Visual Format Language (EVFL)
+            </h3>
 
-<h3>
-<a id="extended-vfl" class="anchor" href="#extended-vfl" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extended Visual Format Language (EVFL)</h3>
+            <p>
+                Apple's Visual Format Language prefers good notation over completeness of expressibility. Because of
+                this some useful constraints cannot be expressed by "Standard" VFL. LUME AutoLayout defines an extended
+                syntax (superset of VFL) which you can opt-in to use:
+            </p>
 
-<p>Apple's Visual Format Language prefers good notation over completeness of expressibility. Because of this some useful constraints cannot be expressed by "Standard" VFL. AutoLayout.js defines an extended syntax (superset of VFL) which you can opt-in to use:</p>
+            <pre><code>AutoLayout.VisualFormat.parse(vfl, {extended: true});</code></pre>
 
-<pre><code>AutoLayout.VisualFormat.parse(vfl, {extended: true});</code></pre>
-
-<h4>Proportional size: <code>%</code></h4>
-<p>To make the size proportional to the size of the parent, you can use the following % syntax:</p>
-<pre><code>|-[view1(==50<span class="evfl">%</span>)]    // view1 is 50% the width of the parent (regardless of any spacing)
+            <h4>Proportional size: <code>%</code></h4>
+            <p>To make the size proportional to the size of the parent, you can use the following % syntax:</p>
+            <pre><code>|-[view1(==50<span class="evfl">%</span>)]    // view1 is 50% the width of the parent (regardless of any spacing)
 [view1(>=50<span class="evfl">%</span>)]      // view1 should always be more than 50% the width of the parent</code></pre>
 
-<h4>Operators: <code>* / + -</code></h4>
-<p>Operators can be used to create linear equations of the form: <code>view1.attr1 == view2.attr2 * multiplier + constant</code>. To for instance, make the width or height proportional to another view, use:</p>
-<pre><code>|-[view1(==view2<span class="evfl">/2</span>)]-[view2]-|      // view1 is half the width of view2
+            <h4>Operators: <code>* / + -</code></h4>
+            <p>
+                Operators can be used to create linear equations of the form:
+                <code>view1.attr1 == view2.attr2 * multiplier + constant</code>. To for instance, make the width or
+                height proportional to another view, use:
+            </p>
+
+            <pre><code>|-[view1(==view2<span class="evfl">/2</span>)]-[view2]-|      // view1 is half the width of view2
 |-[view1(==view2<span class="evfl">*4-100</span>)]-[view2]-|  // view1 is four times the width minus 100, of view2</code></pre>
 
-<h4>Attributes: <code>.{attribute}</code></h4>
-<p>In some cases it is useful to for instance make the width equal to the height:</p>
-<pre><code>|-[view1]-|
+            <h4>Attributes: <code>.{attribute}</code></h4>
+            <p>In some cases it is useful to for instance make the width equal to the height:</p>
+            <pre><code>|-[view1]-|
 V:|-[view1(view1<span class="evfl">.width)</span>]</code></pre>
-<p>You can also combine with operators to enforce an aspect ratio:</p>
-<pre><code>V:|-[view1(view1<span class="evfl">.width/3</span>)]</code></pre>
+            <p>You can also combine with operators to enforce an aspect ratio:</p>
+            <pre><code>V:|-[view1(view1<span class="evfl">.width/3</span>)]</code></pre>
 
-<p>Supported attributes:</p>
-<pre><code>.width
+            <p>Supported attributes:</p>
+            <pre><code>.width
 .height
 .left
 .top
@@ -84,84 +143,117 @@ V:|-[view1(view1<span class="evfl">.width)</span>]</code></pre>
 .centerX
 .centerY</code></pre>
 
-<h4>Z-ordering: <code>Z:</code></h4>
-<p>When sub-views overlap it can be useful to specify the z-ordering for the sub-views:</p>
-<pre><code><span class="evfl">Z:|[child1][child2]</span>  // child2 is placed in front of child1
+            <h4>Z-ordering: <code>Z:</code></h4>
+            <p>When sub-views overlap it can be useful to specify the z-ordering for the sub-views:</p>
+            <pre><code><span class="evfl">Z:|[child1][child2]</span>  // child2 is placed in front of child1
 <span class="evfl">Z:|[background]-10-[child1..2]</span>  // child1 and child2 are placed 10 units in-front of background</code></pre>
 
-<h4>Equal size spacers / centering: <code>~</code></h4>
-<p>Sometimes you just want to center a view. To do this use the `~` connector:</p>
-<pre><code>|<span class="evfl">~</span>[view1(100)]<span class="evfl">~</span>|        // view1 has width of 100 and is centered
+            <h4>Equal size spacers / centering: <code>~</code></h4>
+            <p>Sometimes you just want to center a view. To do this use the `~` connector:</p>
+            <pre><code>|<span class="evfl">~</span>[view1(100)]<span class="evfl">~</span>|        // view1 has width of 100 and is centered
 V:|<span class="evfl">~(10%)~</span>[view2]<span class="evfl">~</span>|     // top & bottom spacers have height of 10%</code></pre>
-<p>All `~` connectors inside a single line of EVFL are constrained to have the same size.
-You can also use more than 2 connectors to proportionally align views:</p>
-<pre><code>|<span class="evfl">~</span>[child1(10)]<span class="evfl">~</span>[child2(20)]<span class="evfl">~</span>[child3(30)]<span class="evfl">~</span>|</code></pre>
+            <p>
+                All `~` connectors inside a single line of EVFL are constrained to have the same size. You can also use
+                more than 2 connectors to proportionally align views:
+            </p>
 
-<h4>View stacks: <code>[col:[header][content[footer]]</code></h4>
-<p>View stacks make it possible to group views into a column or a row.
-The following example creates a view stack named `column` which contains three sub-views. The benefit of this is is revealed in the second line, in which the stack as whole is horizontally positioned.</p>
-<pre><code>V:|<span class="evfl">[column:[top(50)][content][bottom(50)]]</span>|
+            <pre><code>|<span class="evfl">~</span>[child1(10)]<span class="evfl">~</span>[child2(20)]<span class="evfl">~</span>[child3(30)]<span class="evfl">~</span>|</code></pre>
+
+            <h4>View stacks: <code>[col:[header][content[footer]]</code></h4>
+            <p>
+                View stacks make it possible to group views into a column or a row. The following example creates a view
+                stack named `column` which contains three sub-views. The benefit of this is is revealed in the second
+                line, in which the stack as whole is horizontally positioned.
+            </p>
+
+            <pre><code>V:|<span class="evfl">[column:[top(50)][content][bottom(50)]]</span>|
 H:|[column]|</code></pre>
 
-<h4>View ranges: <code>[circle1..5]</code></h4>
-<p>View ranges make it possible to select multiple views at once and apply rules for them:</p>
-<pre><code>//shapes <span class="evfl">circle1..5</span>:circle
+            <h4>View ranges: <code>[circle1..5]</code></h4>
+            <p>View ranges make it possible to select multiple views at once and apply rules for them:</p>
+
+            <pre><code>//shapes <span class="evfl">circle1..5</span>:circle
 H:[circle1(circle1.height)] // set aspect-ratio for circle1
 HV:[<span class="evfl">circle2..5</span>(circle1)]    // use same width/height for other circles
 H:|[circle1]-[circle2]-[circle3]-[circle4]-[circle5]|
 V:|~[<span class="evfl">circle1..5</span>]~|          // center all circles vertically</code></pre>
 
-<h4>Multiple views: <code>[view1,view2,..]</code></h4>
-<p>Similar to 'View ranges', multiple views can be separated using the <code>,</code> character:</p>
-<pre><code>H:|[left(top,right)]-<span class="evfl">[top,bottom]</span>-[right]|
+            <h4>Multiple views: <code>[view1,view2,..]</code></h4>
+
+            <p>Similar to 'View ranges', multiple views can be separated using the <code>,</code> character:</p>
+            <pre><code>H:|[left(top,right)]-<span class="evfl">[top,bottom]</span>-[right]|
 V:|<span class="evfl">[left,right]</span>|
 V:|[top(bottom)]-[bottom]|</code></pre>
 
-<h4>Multiple orientations: <code>HV:</code></h4>
-<p>Sometimes you just want to fill a view to its container. With standard VFL you have to write two lines, one for the horizontal orientation and one for vertical:</p>
-<pre><code>H:|[background]|
+            <h4>Multiple orientations: <code>HV:</code></h4>
+
+            <p>
+                Sometimes you just want to fill a view to its container. With standard VFL you have to write two lines,
+                one for the horizontal orientation and one for vertical:
+            </p>
+
+            <pre><code>H:|[background]|
 V:|[background]|</code></pre>
-<p>With Extended VFL, these can be combined into one line:</p>
-<pre><code><span class="evfl">HV:</span>|[background]|</code></pre>
-<p>When using spacers, you can even use different spacings for horizontal & vertical orientations:</p>
-<pre><code>//spacing: [10, 20]
+
+            <p>With Extended VFL, these can be combined into one line:</p>
+
+            <pre><code><span class="evfl">HV:</span>|[background]|</code></pre>
+
+            <p>When using spacers, you can even use different spacings for horizontal & vertical orientations:</p>
+
+            <pre><code>//spacing: [10, 20]
 <span class="evfl">HV:</span>|-[background]-|</code></pre>
 
-<h4>Disconnections (right/bottom alignment): <code>-></code></h4>
-<p>By default, views are interconnected when defined after each other (e.g. <code>[view1][view2][view3]</code>). In some cases
-it is useful to not interconnect the views, in order to align content to the right or bottom. The following
-example shows a disconnection causing the content after the disconnect to align to the right-edge:</p>
-<pre><code>      // left1..2 are left-aligned, right1..2 are right aligned
-      |[left1(100)][left2(300)]<span class="evfl">-></span>[right1(100)][right2(100)]|
+            <h4>Disconnections (right/bottom alignment): <code>-></code></h4>
+
+            <p>
+                By default, views are interconnected when defined after each other (e.g.
+                <code>[view1][view2][view3]</code>). In some cases it is useful to not interconnect the views, in order
+                to align content to the right or bottom. The following example shows a disconnection causing the content
+                after the disconnect to align to the right-edge:
+            </p>
+
+            <pre><code>      // left1..2 are left-aligned, right1..2 are right aligned
+      |[left1(100)][left2(300)]<span class="evfl">-&gt;</span>[right1(100)][right2(100)]|
       ^^                       ^^                         ^^
    left1 is                 left2 and                  right2 is
  connected to               right1 are                connected to
   super-view               not connected               super-view</code></pre>
 
-<h4>Negative values (overlapping views):</h4>
-<p>Numbers and percentages can also be negative, which can be useful for overlapping views:</p>
-<pre><code>H:|[top,middle,bottom]|
+            <h4>Negative values (overlapping views):</h4>
+
+            <p>Numbers and percentages can also be negative, which can be useful for overlapping views:</p>
+
+            <pre><code>H:|[top,middle,bottom]|
 V:|[top(100)]-(<span class="evfl">-10</span>)-[middle(top)]-(middle/<span class="evfl">-2</span>)-[bottom]|
 Z:|[top][middle][bottom]</code></pre>
 
-<h4>Explicit constraint syntax:</h4>
-<p>Constraints can also be expressed explicitly. This can be particular useful
-when it is otherwise not possible to express a layout or rule:</p>
-<pre><code><span class="evfl">C:view1.centerX(</span>view2.centerX<span class="evfl">)</span>     // view1 is horizontally centered to view2
+            <h4>Explicit constraint syntax:</h4>
+
+            <p>
+                Constraints can also be expressed explicitly. This can be particular useful when it is otherwise not
+                possible to express a layout or rule:
+            </p>
+
+            <pre><code><span class="evfl">C:view1.centerX(</span>view2.centerX<span class="evfl">)</span>     // view1 is horizontally centered to view2
 <span class="evfl">C:view1.centerX(</span>view2<span class="evfl">)</span>             // attribute is inferred when omitted (centerX)
 <span class="evfl">C:view1.centerX(</span>view2<span class="evfl">).bottom(</span>view2.bottom<span class="evfl">)</span> // chaining syntax
 <span class="evfl">C:view1.height(</span>view2.width*2+10<span class="evfl">)</span>   // expressions</code></pre>
 
-<h4>Comments: <code>// comments here</code></h4>
-<p>Single line comments can be used to explain the VFL or to prevent its execution:</p>
-<pre><code><span class="evfl">// Enfore aspect ratios</span>
+            <h4>Comments: <code>// comments here</code></h4>
+
+            <p>Single line comments can be used to explain the VFL or to prevent its execution:</p>
+
+            <pre><code><span class="evfl">// Enfore aspect ratios</span>
 [view1(view1.height/3)] <span class="evfl">// enfore aspect ratio 1/3</span>
-<span class="evfl">// [view2(view2.height/3)] <-- uncomment to enable</span></code></pre>
+<span class="evfl">// [view2(view2.height/3)] &lt;-- uncomment to enable</span></code></pre>
 
-<h4>Documentation</h4>
-<p>The full EVFL syntax documentation is hosted <a href="https://github.com/IjzerenHein/autolayout.js#extended-visual-format-language-evfl">here on github</a>.</p>
-</p>
+            <h4>Documentation</h4>
 
-  </body>
+            <p>
+                The full EVFL syntax documentation is hosted
+                <a href="https://github.com/lume/autolayout#extended-visual-format-language-evfl">here on github</a>.
+            </p>
+        </section>
+    </body>
 </html>
-
