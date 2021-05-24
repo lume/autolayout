@@ -11,6 +11,10 @@ body {
     color: #606c71;
 }
 
+.page-header h1 {
+    font-size: 5vw;
+}
+
 a {
     color: #1e6bb8;
     text-decoration: none;
