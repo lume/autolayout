@@ -1,10 +1,6 @@
-![Logo](logo.png)
+<!-- ![Logo](logo.png) -->
 
-[![Build Status](https://travis-ci.org/IjzerenHein/autolayout.js.svg?branch=master)](https://travis-ci.org/IjzerenHein/autolayout.js)
-[![view on npm](http://img.shields.io/npm/v/autolayout.svg)](https://www.npmjs.org/package/autolayout)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
-
-AutoLayout.js implements Apple's [Auto Layout](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html) and [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) in Javascript. Auto layout is a system which lets you perform lay out using mathematical relationships (constraints). It uses the awesome [Cassowary.js](https://github.com/slightlyoff/cassowary.js) library to do the actual constraint resolving and implements Apple's constraint system and Visual Format Language (vfl) on top of that. It supports the [Extended VFL syntax](#extended-visual-format-language-evfl), including view-stacks and z-indexing.
+LUME AutoLayout implements Apple's [Auto Layout](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html) and [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) in Javascript. Auto layout is a system which lets you perform lay out using mathematical relationships (constraints). It uses the [LUME Kiwi](https://github.com/lume/kiwi) library to do the actual constraint resolving and implements Apple's constraint system and Visual Format Language (vfl) on top of that. It supports the [Extended VFL syntax](#extended-visual-format-language-evfl), including view-stacks and z-indexing.
 
 ```javascript
 var constraints = AutoLayout.VisualFormat.parse([
@@ -31,41 +27,49 @@ Layouts can be previewed and debugged using the [Visual Format Editor](https://g
   - [Examples](#examples)
 - [Extended Visual Format Language (EVFL)](#extended-visual-format-language-evfl)
 - [Additional resources](#additional-resources)
-- [Benchmark](https://rawgit.com/IjzerenHein/autolayout.js/master/bench/index.html)
-- [Tests](https://rawgit.com/IjzerenHein/autolayout.js/master/test/index.html)
+- [Benchmark](https://rawgit.com/lume/autolayout/master/bench/index.html)
+- [Tests](https://rawgit.com/lume/autolayout/master/test/index.html)
 - [Roadmap](#roadmap)
 - [Contribute](#contribute)
 
 ## Getting started
 
-AutoLayout.js is an abstract library for integrating Auto Layout and VFL into other javascript technologies. It provides a simple API and programming model that you can use to build your own auto layout and VFL solution. A simple example of this is, is using `position: absolute;` to [lay out DOM elements](https://rawgit.com/IjzerenHein/autolayout.js/master/examples/DOM/index.html). A more elaborate example of this is the [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor), which is built using [famo.us](http://famous.org) and [famous-flex](https://github.com/IjzerenHein/famous-flex). AutoLayout.js is written in ES6 and contains transpiled distribution files.
+LUME AutoLayout is an abstract library for integrating Auto Layout and VFL into other javascript technologies. It provides a simple API and programming model that you can use to build your own auto layout and VFL solution. A simple example of this is, is using `position: absolute;` to [lay out DOM elements](https://rawgit.com/lume/autolayout/master/examples/DOM/index.html). A more elaborate example of this is the [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor), which is built using [famo.us](http://deprecated.famous.org) and [famous-flex](https://github.com/IjzerenHein/famous-flex).
 
 ### Installation
 
-Install using npm or bower:
+Install using npm:
 
     npm install autolayout
 
-    bower install autolayout
-
-Include the library in your project:
+Include the library in your HTML project:
 
 ```html
-<head>
-  <script type="text/javascript" src="<path-to-autolayout.js>/dist/autolayout.js"></script>
-</head>
+<script type="module">
+    import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module'
+    // ...use AutoLayout here...
+</script>
 ```
 
-```javascript
-var AutoLayout = window.AutoLayout;
+Or when using a bundler like Webpack or Rollup, use:
+
+```js
+import AutoLayout from '@lume/autolayout'
+// ...use AutoLayout here...
 ```
 
-Or when using a bundler like webpack or browserify, use:
-
-```javascript
-var AutoLayout = require('autolayout.js');
+<!--
+TODO: describe importing if already importing `lume`, f.e. LUME.AutoLayout
+```js
+import {AutoLayout} from 'lume'
+// ...use AutoLayout here...
 ```
-*(when using the 'src/' directory, do make sure plugins for transpiling es6 files are installed!)*
+or
+```js
+const AutoLayout = LUME.AutoLayout
+// ...use AutoLayout here...
+```
+-->
 
 ### Using the API
 
@@ -152,7 +156,7 @@ view.addConstraint({
 
 ## Extended Visual Format Language (EVFL)
 
-Apple's Visual Format Language prefers good notation over completeness of expressibility. Because of this some useful constraints cannot be expressed by "Standard" VFL. AutoLayout.js defines an extended syntax (superset of VFL) which you opt-in to use. To enable the extended syntax, set option `extended` to `true` when parsing the visual format:
+Apple's Visual Format Language prefers good notation over completeness of expressibility. Because of this some useful constraints cannot be expressed by "Standard" VFL. LUME AutoLayout defines an extended syntax (superset of VFL) which you opt-in to use. To enable the extended syntax, set option `extended` to `true` when parsing the visual format:
 
 ```javascript
 var evfl = '|-[view1(==50%)]';
@@ -340,19 +344,18 @@ Single line comments can be used to explain the VFL or to prevent its execution:
 
 ## Roadmap
 
-AutoLayout.js is pretty close to feature complete. The existing features have
+LUME AutoLayout is pretty close to feature complete. The existing features have
 been battle tested in several production environments and can be considered safe for production use.
 
 The following features are still on the todo-list. Any help on making this
 feature complete is very welcome:
 
 - [ ] Checking for ambigous layout.
-- [ ] DOM layouting primitives
-- [ ] Remove constraints?
 - [ ] Get constraint definitions from `View`
 - [ ] LTR (left to right reading) (Attribute.LEADING & Attribute.TRAILING)
 - [ ] Baseline support?
-
+<!-- - [ ] Remove constraints? -->
+<!-- - [ ] DOM layouting primitives -->
 
 ## Contribute
 
@@ -367,4 +370,19 @@ Also have a look at [CONTRIBUTING](./CONTRIBUTING.md).
 -   @IjzerenHein
 -   hrutjes@gmail.com (for hire)
 
+## License
+
 © 2015-2016 Hein Rutjes
+© 2021 Joseph Orbegoso Pea (http://github.com/trusktr)
+
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+
+<!-- 
+TODO
+
+## Status
+
+[![Build Status](https://travis-ci.org/IjzerenHein/autolayout.js.svg?branch=master)](https://travis-ci.org/IjzerenHein/autolayout.js)
+[![view on npm](http://img.shields.io/npm/v/autolayout.svg)](https://www.npmjs.org/package/autolayout)
+
+-->

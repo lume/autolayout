@@ -24,7 +24,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/IjzerenHein/autolayout.js/issues"
+    "url": "https://github.com/lume/autolayout/issues"
   },
   "engines": {
     "node": ">= 0.10.0"

@@ -69,7 +69,7 @@ function runBench(name, benchmarks, callback) {
     }).run({ 'async': true });
 }
 
-runBench('AutoLayout.js', [
+runBench('LUME AutoLayout', [
     {name: 'parse', fn: parseVFL},
     {name: 'create', fn: createView},
     {name: 'solve', fn: solveView}]

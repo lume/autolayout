@@ -1,4 +1,4 @@
-# Contributing to AutoLayout.js
+# Contributing to LUME AutoLayout
 
 ## Branch
 

@@ -1,21 +1,32 @@
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>Mocha Tests</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.css" />
     </head>
     <body>
         <div id="mocha"></div>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
-        <script>mocha.setup('bdd')</script>
-        <script type="text/javascript" src="../dist/autolayout.js"></script>
-        <script type="text/javascript" src="./VisualFormat.js"></script>
-        <script type="text/javascript" src="./ExtendedVisualFormat.js"></script>
-        <script type="text/javascript" src="./View.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
+
         <script>
-            mocha.checkLeaks();
-            mocha.run();
+            mocha.setup('bdd');
+        </script>
+
+        <script type="module">
+            import AutoLayout from '../es/AutoLayout.js';
+            window.AutoLayout = AutoLayout;
+
+            // TODO move tests to new system
+
+            async function test() {
+                await import('./VisualFormat.js');
+                await import('./ExtendedVisualFormat.js');
+                await import('./View.js');
+
+                mocha.checkLeaks();
+                mocha.run();
+            }
         </script>
     </body>
 </html>
