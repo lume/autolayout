@@ -4,15 +4,36 @@ LUME AutoLayout implements Apple's [Auto Layout](https://developer.apple.com/lib
 
 Auto layout is a system which lets you perform layout using mathematical relationships (constraints). It uses the [LUME Kiwi](https://github.com/lume/kiwi) library to do the actual constraint resolving and implements Apple's constraint system and Visual Format Language (vfl) on top of that. It supports the [Extended VFL syntax](#extended-visual-format-language-evfl), including view-stacks and z-indexing.
 
-```javascript
+```js
+// Define the layout constraints using VFL syntax:
 var constraints = AutoLayout.VisualFormat.parse([
-  'H:|[view1(==view2)]-10-[view2]|',
-  'V:|[view1,view2]|'
+  'H:|[view1(==view2)]-10-[view2]|', // The horizontal aspect of the layout
+  'V:|[view1,view2]|' // The vertical aspect of the layout
 ], {extended: true});
+
+// Create a view, uses the constraints to calculate the actual positioning and sizing of spaces in the layout:
 var view = new AutoLayout.View({constraints: constraints});
 view.setSize(400, 500);
+
+// Access each space in the calculated layout:
 console.log(view.subViews.view1); // {left: 0, top: 0, width: 195, height: 500}
 console.log(view.subViews.view2); // {left: 205, top: 0, width: 195, height: 500}
+
+// Finally apply the layout to your rendering system. Autolayout is not coupled to any particular rendering system.
+
+// For example, position DOM elements where they should be:
+const el1 = document.querySelector('.view1')
+el1.style.transform = `transform(${view.subViews.view1.left}px, ${view.subViews.view1.top}px)`
+el1.style.width = view.subViews.view1.width + 'px'
+el1.style.height = view.subViews.view1.height + 'px'
+const el2 = document.querySelector('.view1')
+el2.style.transform = `transform(${view.subViews.view2.left}px, ${view.subViews.view2.top}px)`
+el2.style.width = view.subViews.view2.width + 'px'
+el2.style.height = view.subViews.view2.height + 'px'
+
+// Or if you're in WebGL using Three.js, then apply values to your meshes:
+mesh.postion.set(view.subViews.view2.left, -view.subViews.view2.top, 0)
+mesh.scale.set(view.subViews.view2.width, view.subViews.view2.height, 1)
 ```
 
 Layouts can be previewed and debugged using the [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor):
