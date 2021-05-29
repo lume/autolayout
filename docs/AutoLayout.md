@@ -112,8 +112,8 @@ based on the content, use:
 
 ```javascript
 var view = new AutoLayout.View({
-  constraints: VisualFormat.parse('|-[view1]-[view2]-'),
-  spacing: 20
+	constraints: VisualFormat.parse('|-[view1]-[view2]-'),
+	spacing: 20,
 });
 view.subViews.view1.intrinsicWidth = 100;
 view.subViews.view2.intrinsicWidth = 100;
@@ -322,7 +322,7 @@ Use this property to explicitely set the width of the sub-view, e.g.:
 
 ```javascript
 var view = new AutoLayout.View(AutoLayout.VisualFormat.parse('|[child1][child2]|'), {
-  width: 500
+	width: 500,
 });
 view.subViews.child1.intrinsicWidth = 100;
 console.log('child2 width: ' + view.subViews.child2.width); // 400

@@ -1,13 +1,13 @@
 {
-    "compilerOptions": {
-        "moduleResolution": "node",
-        "target": "es2019",
-        "module": "es2020",
-        "strict": true,
-        "noImplicitAny": false,
-        "outDir": "es",
-        "declaration": true,
-        "declarationMap": true
-    },
-    "include": ["src/*.ts"]
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"target": "es2019",
+		"module": "es2020",
+		"strict": true,
+		"noImplicitAny": false,
+		"outDir": "es",
+		"declaration": true,
+		"declarationMap": true
+	},
+	"include": ["src/*.ts"]
 }

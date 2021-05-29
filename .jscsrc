@@ -1,21 +1,21 @@
 {
-    "requireCurlyBraces": ["do", "try", "catch"],
-    "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
-    "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
-    "disallowSpaceAfterPrefixUnaryOperators": true,
-    "disallowKeywords": ["with"],
-    "disallowMultipleLineBreaks": true,
-    "requireBlocksOnNewline": true,
-    "disallowMixedSpacesAndTabs": true,
-    "disallowTrailingWhitespace": true,
-    "requireLineFeedAtFileEnd": true,
-    "requireSpacesInFunctionExpression": {
-        "beforeOpeningCurlyBrace": true
-    },
-    "disallowSpacesInFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
-    "validateQuoteMarks": "'",
-    "disallowMultipleVarDecl": true,
-    "disallowSpacesInsideParentheses": true
+	"requireCurlyBraces": ["do", "try", "catch"],
+	"requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
+	"disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
+	"disallowSpaceAfterPrefixUnaryOperators": true,
+	"disallowKeywords": ["with"],
+	"disallowMultipleLineBreaks": true,
+	"requireBlocksOnNewline": true,
+	"disallowMixedSpacesAndTabs": true,
+	"disallowTrailingWhitespace": true,
+	"requireLineFeedAtFileEnd": true,
+	"requireSpacesInFunctionExpression": {
+		"beforeOpeningCurlyBrace": true
+	},
+	"disallowSpacesInFunctionExpression": {
+		"beforeOpeningRoundBrace": true
+	},
+	"validateQuoteMarks": "'",
+	"disallowMultipleVarDecl": true,
+	"disallowSpacesInsideParentheses": true
 }

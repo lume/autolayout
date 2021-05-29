@@ -7,11 +7,11 @@ Auto layout is a system which lets you perform layout using mathematical relatio
 ```js
 // Define the layout constraints using VFL syntax:
 var constraints = AutoLayout.VisualFormat.parse(
-  [
-    'H:|[view1(==view2)]-10-[view2]|', // The horizontal aspect of the layout
-    'V:|[view1,view2]|' // The vertical aspect of the layout
-  ],
-  {extended: true}
+	[
+		'H:|[view1(==view2)]-10-[view2]|', // The horizontal aspect of the layout
+		'V:|[view1,view2]|', // The vertical aspect of the layout
+	],
+	{extended: true},
 );
 
 // Create a view, uses the constraints to calculate the actual positioning and sizing of spaces in the layout:
@@ -72,8 +72,8 @@ Include the library in your HTML project:
 
 ```html
 <script type="module">
-  import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module';
-  // ...use AutoLayout here...
+	import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module';
+	// ...use AutoLayout here...
 </script>
 ```
 
@@ -103,11 +103,11 @@ To parse VFL into constraints, use:
 
 ```javascript
 try {
-  // The VFL can be either a string or an array of strings.
-  // strings may also contain '\n' which indicates that a new line of VFL will begin.
-  var constraints = AutoLayout.VisualFormat.parse(['|-[child(==child2)]-[child2]-|', 'V:|[child(==child2)]|']);
+	// The VFL can be either a string or an array of strings.
+	// strings may also contain '\n' which indicates that a new line of VFL will begin.
+	var constraints = AutoLayout.VisualFormat.parse(['|-[child(==child2)]-[child2]-|', 'V:|[child(==child2)]|']);
 } catch (err) {
-  console.log('parse error: ' + err.toString());
+	console.log('parse error: ' + err.toString());
 }
 ```
 
@@ -117,22 +117,22 @@ relations and variables. You can set the size of the view and other properties s
 ```javascript
 // Create a view with a set of constraints
 var view = new AutoLayout.View({
-  constraints: constraints, // initial constraints (optional)
-  width: 100, // initial width (optional)
-  height: 200, // initial height (optional)
-  spacing: 10 // spacing size to use (optional, default: 8)
+	constraints: constraints, // initial constraints (optional)
+	width: 100, // initial width (optional)
+	height: 200, // initial height (optional)
+	spacing: 10, // spacing size to use (optional, default: 8)
 });
 
 // get the size and position of the sub-views
 for (var key in view.subViews) {
-  console.log(key + ': ' + view.subViews[key]);
-  // e.g. {
-  //   name: 'child1',
-  //   left: 20,
-  //   top: 10,
-  //   width: 70,
-  //   height: 80
-  // }
+	console.log(key + ': ' + view.subViews[key]);
+	// e.g. {
+	//   name: 'child1',
+	//   left: 20,
+	//   top: 10,
+	//   width: 70,
+	//   height: 80
+	// }
 }
 ```
 
@@ -143,7 +143,7 @@ view.setSize(300, 600);
 
 // get the new size & position of the sub-views
 for (var key in view.subViews) {
-  console.log(key + ': ' + view.subViews[key]);
+	console.log(key + ': ' + view.subViews[key]);
 }
 ```
 

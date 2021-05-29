@@ -1,20 +1,20 @@
 {
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "globals": {
-        "kiwi": "readonly"
-    },
-    "ecmaFeatures": {
-        "classes": true,
-        "modules": true,
-        "blockBindings": true,
-        "arrowFunctions": true
-    },
-    "rules": {
-        "quotes": [2, "single"],
-        "no-underscore-dangle": 0
-    }
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"globals": {
+		"kiwi": "readonly"
+	},
+	"ecmaFeatures": {
+		"classes": true,
+		"modules": true,
+		"blockBindings": true,
+		"arrowFunctions": true
+	},
+	"rules": {
+		"quotes": [2, "single"],
+		"no-underscore-dangle": 0
+	}
 }
