@@ -14,13 +14,27 @@ var AutoLayout = window.AutoLayout;
  * @param {Number} width width.
  * @param {Number} height height.
  */
-var transformAttr = ('transform' in document.documentElement.style) ? 'transform' : undefined;
-transformAttr = transformAttr || (('-webkit-transform' in document.documentElement.style) ? '-webkit-transform' : 'undefined');
-transformAttr = transformAttr || (('-moz-transform' in document.documentElement.style) ? '-moz-transform' : 'undefined');
-transformAttr = transformAttr || (('-ms-transform' in document.documentElement.style) ? '-ms-transform' : 'undefined');
-transformAttr = transformAttr || (('-o-transform' in document.documentElement.style) ? '-o-transform' : 'undefined');
+var transformAttr = 'transform' in document.documentElement.style ? 'transform' : undefined;
+transformAttr =
+    transformAttr || ('-webkit-transform' in document.documentElement.style ? '-webkit-transform' : 'undefined');
+transformAttr = transformAttr || ('-moz-transform' in document.documentElement.style ? '-moz-transform' : 'undefined');
+transformAttr = transformAttr || ('-ms-transform' in document.documentElement.style ? '-ms-transform' : 'undefined');
+transformAttr = transformAttr || ('-o-transform' in document.documentElement.style ? '-o-transform' : 'undefined');
 function setAbsoluteSizeAndPosition(elm, left, top, width, height) {
-    elm.setAttribute('style', 'width: ' + width + 'px; height: ' + height + 'px; ' + transformAttr + ': translate3d(' + left + 'px, ' + top + 'px, 0px);');
+    elm.setAttribute(
+        'style',
+        'width: ' +
+            width +
+            'px; height: ' +
+            height +
+            'px; ' +
+            transformAttr +
+            ': translate3d(' +
+            left +
+            'px, ' +
+            top +
+            'px, 0px);'
+    );
 }
 
 /**
@@ -44,8 +58,11 @@ function autoLayout(parentElm, visualFormat) {
             elements[key] = elm;
         }
     }
-    var updateLayout = function() {
-        view.setSize(parentElm ? parentElm.clientWidth : window.innerWidth, parentElm ? parentElm.clientHeight : window.innerHeight);
+    var updateLayout = function () {
+        view.setSize(
+            parentElm ? parentElm.clientWidth : window.innerWidth,
+            parentElm ? parentElm.clientHeight : window.innerHeight
+        );
         for (key in view.subViews) {
             var subView = view.subViews[key];
             if (elements[key]) {
@@ -59,16 +76,10 @@ function autoLayout(parentElm, visualFormat) {
 }
 
 // main layout
-autoLayout(undefined, [
-    '|-[left(right)]-[right]-|',
-    'V:|-[left]-|\nV:|-[right]-|'
-]);
+autoLayout(undefined, ['|-[left(right)]-[right]-|', 'V:|-[left]-|\nV:|-[right]-|']);
 
 // left layout (EVFL)
-autoLayout(document.getElementById('left'), [
-    'V:|-[col:[text(20)]-[vfl(evfl)]-[text2(text)]-[evfl]]-|',
-    '|-[col]-|'
-]);
+autoLayout(document.getElementById('left'), ['V:|-[col:[text(20)]-[vfl(evfl)]-[text2(text)]-[evfl]]-|', '|-[col]-|']);
 
 // right example layout
 var exampleVFL = [

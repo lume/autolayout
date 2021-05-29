@@ -1,22 +1,23 @@
 /*global module:false*/
 /*eslint strict:false, quotes: [2, "single"] */
 
-var assert = (typeof window === 'undefined') ? require('assert') : window.chai.assert;
-var _ = (typeof window === 'undefined') ? require('lodash') : window._;
-var Platform = (typeof window === 'undefined') ? require('platform') : window.Platform;
-var Benchmark = (typeof window === 'undefined') ? require('benchmark') : window.Benchmark;
-var AutoLayout = (typeof window === 'undefined') ? require('../dist/autolayout') : window.AutoLayout;
+var assert = typeof window === 'undefined' ? require('assert') : window.chai.assert;
+var _ = typeof window === 'undefined' ? require('lodash') : window._;
+var Platform = typeof window === 'undefined' ? require('platform') : window.Platform;
+var Benchmark = typeof window === 'undefined' ? require('benchmark') : window.Benchmark;
+var AutoLayout = typeof window === 'undefined' ? require('../dist/autolayout') : window.AutoLayout;
 
 var logElement;
 function log(message) {
     console.log(message);
     if (typeof document !== 'undefined') {
-        logElement = logElement || document.getElementById('log')
-        logElement.innerHTML += (message + '\n');
+        logElement = logElement || document.getElementById('log');
+        logElement.innerHTML += message + '\n';
     }
 }
 
-var vfl = '' +
+var vfl =
+    '' +
     '// Main circle\n' +
     '|~[main_circle(<=200,<=40%,main_circle.height)]~|\n' +
     'V:|~[main_circle(<=60%)]~|\n' +
@@ -59,18 +60,23 @@ function runBench(name, benchmarks, callback) {
     for (var i = 0; i < benchmarks.length; i++) {
         suite.add(benchmarks[i].name, benchmarks[i].fn);
     }
-    suite.on('cycle', function(event) {
-      log(String(event.target));
-    }).on('complete', function() {
-        var fastest = this.filter('fastest')[0];
-        var slowest = this.filter('slowest')[0];
-        log('Fastest is ' + fastest.name + ' (± ' + Math.round(fastest.hz / slowest.hz * 100)/100 + 'x faster)');
-        if (callback) callback();
-    }).run({ 'async': true });
+    suite
+        .on('cycle', function (event) {
+            log(String(event.target));
+        })
+        .on('complete', function () {
+            var fastest = this.filter('fastest')[0];
+            var slowest = this.filter('slowest')[0];
+            log(
+                'Fastest is ' + fastest.name + ' (± ' + Math.round((fastest.hz / slowest.hz) * 100) / 100 + 'x faster)'
+            );
+            if (callback) callback();
+        })
+        .run({async: true});
 }
 
 runBench('LUME AutoLayout', [
     {name: 'parse', fn: parseVFL},
     {name: 'create', fn: createView},
-    {name: 'solve', fn: solveView}]
-);
+    {name: 'solve', fn: solveView}
+]);

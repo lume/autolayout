@@ -7,12 +7,12 @@ import Attribute from './Attribute.js';
  * @namespace SubView
  */
 class SubView {
-    declare _name
-    declare _type
-    declare _solver
-    declare _attr
-    declare _intrinsicWidth: number
-    declare _intrinsicHeight: number
+    declare _name;
+    declare _type;
+    declare _solver;
+    declare _attr;
+    declare _intrinsicWidth: number;
+    declare _intrinsicHeight: number;
 
     constructor(options) {
         this._name = options.name;
@@ -103,7 +103,7 @@ class SubView {
         return this._intrinsicWidth;
     }
     set intrinsicWidth(value: number) {
-        if ((value !== undefined) && (value !== this._intrinsicWidth)) {
+        if (value !== undefined && value !== this._intrinsicWidth) {
             const attr = this._getAttr(Attribute.WIDTH);
             if (this._intrinsicWidth === undefined) {
                 this._solver.addEditVariable(attr, kiwi.Strength.create(this._name ? 998 : 999, 1000, 1000));
@@ -125,7 +125,7 @@ class SubView {
         return this._intrinsicHeight;
     }
     set intrinsicHeight(value: number) {
-        if ((value !== undefined) && (value !== this._intrinsicHeight)) {
+        if (value !== undefined && value !== this._intrinsicHeight) {
             const attr = this._getAttr(Attribute.HEIGHT);
             if (this._intrinsicHeight === undefined) {
                 this._solver.addEditVariable(attr, kiwi.Strength.create(this._name ? 998 : 999, 1000, 1000));
@@ -212,22 +212,46 @@ class SubView {
             case Attribute.RIGHT:
                 this._getAttr(Attribute.LEFT);
                 this._getAttr(Attribute.WIDTH);
-                this._solver.addConstraint(new kiwi.Constraint(this._attr[attr], kiwi.Operator.Eq, this._attr[Attribute.LEFT].plus(this._attr[Attribute.WIDTH])));
+                this._solver.addConstraint(
+                    new kiwi.Constraint(
+                        this._attr[attr],
+                        kiwi.Operator.Eq,
+                        this._attr[Attribute.LEFT].plus(this._attr[Attribute.WIDTH])
+                    )
+                );
                 break;
             case Attribute.BOTTOM:
                 this._getAttr(Attribute.TOP);
                 this._getAttr(Attribute.HEIGHT);
-                this._solver.addConstraint(new kiwi.Constraint(this._attr[attr], kiwi.Operator.Eq, this._attr[Attribute.TOP].plus(this._attr[Attribute.HEIGHT])));
+                this._solver.addConstraint(
+                    new kiwi.Constraint(
+                        this._attr[attr],
+                        kiwi.Operator.Eq,
+                        this._attr[Attribute.TOP].plus(this._attr[Attribute.HEIGHT])
+                    )
+                );
                 break;
             case Attribute.CENTERX:
                 this._getAttr(Attribute.LEFT);
                 this._getAttr(Attribute.WIDTH);
-                this._solver.addConstraint(new kiwi.Constraint(this._attr[attr], kiwi.Operator.Eq, this._attr[Attribute.LEFT].plus(this._attr[Attribute.WIDTH].divide(2))));
+                this._solver.addConstraint(
+                    new kiwi.Constraint(
+                        this._attr[attr],
+                        kiwi.Operator.Eq,
+                        this._attr[Attribute.LEFT].plus(this._attr[Attribute.WIDTH].divide(2))
+                    )
+                );
                 break;
             case Attribute.CENTERY:
                 this._getAttr(Attribute.TOP);
                 this._getAttr(Attribute.HEIGHT);
-                this._solver.addConstraint(new kiwi.Constraint(this._attr[attr], kiwi.Operator.Eq, this._attr[Attribute.TOP].plus(this._attr[Attribute.HEIGHT].divide(2))));
+                this._solver.addConstraint(
+                    new kiwi.Constraint(
+                        this._attr[attr],
+                        kiwi.Operator.Eq,
+                        this._attr[Attribute.TOP].plus(this._attr[Attribute.HEIGHT].divide(2))
+                    )
+                );
                 break;
         }
         this._solver.updateVariables();

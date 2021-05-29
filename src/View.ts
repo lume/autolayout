@@ -46,10 +46,10 @@ class View {
         this._parentSubView = new SubView({
             solver: this._solver
         });
-        this.setSpacing((options && (options.spacing !== undefined)) ? options.spacing : 8);
+        this.setSpacing(options && options.spacing !== undefined ? options.spacing : 8);
         //this.constraints = [];
         if (options) {
-            if ((options.width !== undefined) || (options.height !== undefined)) {
+            if (options.width !== undefined || options.height !== undefined) {
                 this.setSize(options.width, options.height);
             }
             if (options.constraints) {
@@ -162,12 +162,22 @@ class View {
         } else {
             // normalize spacing into array: [top, right, bottom, left, horz, vert, z-index]
             switch (spacing.length) {
-                case 1: spacing = [spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], 1]; break;
-                case 2: spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], 1]; break;
-                case 3: spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], spacing[2]]; break;
-                case 6: spacing = [spacing[0], spacing[1], spacing[2], spacing[3], spacing[4], spacing[5], 1]; break;
-                case 7: break;
-                default: throw 'Invalid spacing syntax';
+                case 1:
+                    spacing = [spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], 1];
+                    break;
+                case 2:
+                    spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], 1];
+                    break;
+                case 3:
+                    spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], spacing[2]];
+                    break;
+                case 6:
+                    spacing = [spacing[0], spacing[1], spacing[2], spacing[3], spacing[4], spacing[5], 1];
+                    break;
+                case 7:
+                    break;
+                default:
+                    throw 'Invalid spacing syntax';
             }
         }
         if (!this._compareSpacing(this._spacing, spacing)) {
@@ -257,8 +267,8 @@ class View {
     _addConstraint(constraint) {
         //this.constraints.push(constraint);
         let relation;
-        const multiplier = (constraint.multiplier !== undefined) ? constraint.multiplier : 1;
-        let constant = (constraint.constant !== undefined) ? constraint.constant : 0;
+        const multiplier = constraint.multiplier !== undefined ? constraint.multiplier : 1;
+        let constant = constraint.constant !== undefined ? constraint.constant : 0;
         if (constant === 'default') {
             constant = this._getSpacing(constraint);
         }
@@ -266,20 +276,20 @@ class View {
         let attr2;
         if (constraint.attr2 === Attribute.CONST) {
             attr2 = this._getConst(undefined, constraint.constant);
-        }
-        else {
+        } else {
             attr2 = this._getSubView(constraint.view2)._getAttr(constraint.attr2);
-            if ((multiplier !== 1) && constant) {
+            if (multiplier !== 1 && constant) {
                 attr2 = attr2.multiply(multiplier).plus(constant);
-            }
-            else if (constant) {
+            } else if (constant) {
                 attr2 = attr2.plus(constant);
-            }
-            else if (multiplier !== 1) {
+            } else if (multiplier !== 1) {
                 attr2 = attr2.multiply(multiplier);
             }
         }
-        const strength = ((constraint.priority !== undefined) && (constraint.priority < 1000)) ? kiwi.Strength.create(0, constraint.priority, 1000) : defaultPriorityStrength;
+        const strength =
+            constraint.priority !== undefined && constraint.priority < 1000
+                ? kiwi.Strength.create(0, constraint.priority, 1000)
+                : defaultPriorityStrength;
         switch (constraint.relation) {
             case Relation.EQU:
                 relation = new kiwi.Constraint(attr1, kiwi.Operator.Eq, attr2, strength);
@@ -298,19 +308,15 @@ class View {
 
     _getSpacing(constraint) {
         let index = 4;
-        if (!constraint.view1 && (constraint.attr1 === 'left')) {
+        if (!constraint.view1 && constraint.attr1 === 'left') {
             index = 3;
-        }
-        else if (!constraint.view1 && (constraint.attr1 === 'top')) {
+        } else if (!constraint.view1 && constraint.attr1 === 'top') {
             index = 0;
-        }
-        else if (!constraint.view2 && (constraint.attr2 === 'right')) {
+        } else if (!constraint.view2 && constraint.attr2 === 'right') {
             index = 1;
-        }
-        else if (!constraint.view2 && (constraint.attr2 === 'bottom')) {
+        } else if (!constraint.view2 && constraint.attr2 === 'bottom') {
             index = 2;
-        }
-        else {
+        } else {
             switch (constraint.attr1) {
                 case 'left':
                 case 'right':
@@ -340,20 +346,22 @@ class View {
     _getSubView(viewName) {
         if (!viewName) {
             return this._parentSubView;
-        }
-        else if (viewName.name) {
-            this._subViews[viewName.name] = this._subViews[viewName.name] || new SubView({
-                name: viewName.name,
-                solver: this._solver
-            });
+        } else if (viewName.name) {
+            this._subViews[viewName.name] =
+                this._subViews[viewName.name] ||
+                new SubView({
+                    name: viewName.name,
+                    solver: this._solver
+                });
             this._subViews[viewName.name]._type = this._subViews[viewName.name]._type || viewName.type;
             return this._subViews[viewName.name];
-        }
-        else {
-            this._subViews[viewName] = this._subViews[viewName] || new SubView({
-                name: viewName,
-                solver: this._solver
-            });
+        } else {
+            this._subViews[viewName] =
+                this._subViews[viewName] ||
+                new SubView({
+                    name: viewName,
+                    solver: this._solver
+                });
             return this._subViews[viewName];
         }
     }
@@ -379,7 +387,7 @@ class View {
      * @private
      */
     //get hasAmbiguousLayout() {
-        // Todo
+    // Todo
     //}
 }
 

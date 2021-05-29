@@ -6,10 +6,13 @@ Auto layout is a system which lets you perform layout using mathematical relatio
 
 ```js
 // Define the layout constraints using VFL syntax:
-var constraints = AutoLayout.VisualFormat.parse([
-  'H:|[view1(==view2)]-10-[view2]|', // The horizontal aspect of the layout
-  'V:|[view1,view2]|' // The vertical aspect of the layout
-], {extended: true});
+var constraints = AutoLayout.VisualFormat.parse(
+  [
+    'H:|[view1(==view2)]-10-[view2]|', // The horizontal aspect of the layout
+    'V:|[view1,view2]|' // The vertical aspect of the layout
+  ],
+  {extended: true}
+);
 
 // Create a view, uses the constraints to calculate the actual positioning and sizing of spaces in the layout:
 var view = new AutoLayout.View({constraints: constraints});
@@ -22,27 +25,27 @@ console.log(view.subViews.view2); // {left: 205, top: 0, width: 195, height: 500
 // Finally apply the layout to your rendering system. Autolayout is not coupled to any particular rendering system.
 
 // For example, position DOM elements where they should be:
-const el1 = document.querySelector('.view1')
-el1.style.transform = `transform(${view.subViews.view1.left}px, ${view.subViews.view1.top}px)`
-el1.style.width = view.subViews.view1.width + 'px'
-el1.style.height = view.subViews.view1.height + 'px'
-const el2 = document.querySelector('.view1')
-el2.style.transform = `transform(${view.subViews.view2.left}px, ${view.subViews.view2.top}px)`
-el2.style.width = view.subViews.view2.width + 'px'
-el2.style.height = view.subViews.view2.height + 'px'
+const el1 = document.querySelector('.view1');
+el1.style.transform = `transform(${view.subViews.view1.left}px, ${view.subViews.view1.top}px)`;
+el1.style.width = view.subViews.view1.width + 'px';
+el1.style.height = view.subViews.view1.height + 'px';
+const el2 = document.querySelector('.view1');
+el2.style.transform = `transform(${view.subViews.view2.left}px, ${view.subViews.view2.top}px)`;
+el2.style.width = view.subViews.view2.width + 'px';
+el2.style.height = view.subViews.view2.height + 'px';
 
 // Or if you're in WebGL using Three.js, then apply values to your meshes:
-mesh.postion.set(view.subViews.view2.left, -view.subViews.view2.top, 0)
-mesh.scale.set(view.subViews.view2.width, view.subViews.view2.height, 1)
+mesh.postion.set(view.subViews.view2.left, -view.subViews.view2.top, 0);
+mesh.scale.set(view.subViews.view2.width, view.subViews.view2.height, 1);
 ```
 
 Layouts can be previewed and debugged using the [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor):
 
 [![Example - click me](example.png)](https://rawgit.com/IjzerenHein/visualformat-editor/master/dist/index.html?vfl=example)
-*(click image to open the editor)*
-
+_(click image to open the editor)_
 
 ## Index
+
 - [Getting started](#getting-started)
   - [Installation](#installation)
   - [Using the API](#using-the-api)
@@ -69,15 +72,15 @@ Include the library in your HTML project:
 
 ```html
 <script type="module">
-    import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module'
-    // ...use AutoLayout here...
+  import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module';
+  // ...use AutoLayout here...
 </script>
 ```
 
 Or when using a bundler like Webpack or Rollup, use:
 
 ```js
-import AutoLayout from '@lume/autolayout'
+import AutoLayout from '@lume/autolayout';
 // ...use AutoLayout here...
 ```
 
@@ -102,12 +105,9 @@ To parse VFL into constraints, use:
 try {
   // The VFL can be either a string or an array of strings.
   // strings may also contain '\n' which indicates that a new line of VFL will begin.
-  var constraints = AutoLayout.VisualFormat.parse([
-    '|-[child(==child2)]-[child2]-|',
-    'V:|[child(==child2)]|',
-  ]);
+  var constraints = AutoLayout.VisualFormat.parse(['|-[child(==child2)]-[child2]-|', 'V:|[child(==child2)]|']);
 } catch (err) {
-    console.log('parse error: ' + err.toString());
+  console.log('parse error: ' + err.toString());
 }
 ```
 
@@ -117,40 +117,39 @@ relations and variables. You can set the size of the view and other properties s
 ```javascript
 // Create a view with a set of constraints
 var view = new AutoLayout.View({
-    constraints: constraints, // initial constraints (optional)
-    width: 100,               // initial width (optional)
-    height: 200,              // initial height (optional)
-    spacing: 10               // spacing size to use (optional, default: 8)
+  constraints: constraints, // initial constraints (optional)
+  width: 100, // initial width (optional)
+  height: 200, // initial height (optional)
+  spacing: 10 // spacing size to use (optional, default: 8)
 });
 
 // get the size and position of the sub-views
 for (var key in view.subViews) {
-    console.log(key + ': ' + view.subViews[key]);
-    // e.g. {
-    //   name: 'child1',
-    //   left: 20,
-    //   top: 10,
-    //   width: 70,
-    //   height: 80
-    // }
+  console.log(key + ': ' + view.subViews[key]);
+  // e.g. {
+  //   name: 'child1',
+  //   left: 20,
+  //   top: 10,
+  //   width: 70,
+  //   height: 80
+  // }
 }
 ```
 
 By changing the size, the layout is re-evaluated and the subView's are updated:
 
-``` javascript
+```javascript
 view.setSize(300, 600);
 
 // get the new size & position of the sub-views
 for (var key in view.subViews) {
-    console.log(key + ': ' + view.subViews[key]);
+  console.log(key + ': ' + view.subViews[key]);
 }
 ```
 
 Instead of using VFL, you can also add constraints directly.
 The properties are identical to those of [NSLayoutConstraint](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class).
-To constrain view1 to its parent view, use *null* for view2.
-
+To constrain view1 to its parent view, use _null_ for view2.
 
 ```
 view.addConstraint({
@@ -168,14 +167,12 @@ view.addConstraint({
 
 [The API reference documentation can be found here.](docs/AutoLayout.md)
 
-
 ### Examples
 
 - [DOM Example](https://rawgit.com/IjzerenHein/autolayout.js/master/examples/DOM/index.html) [(source)](examples/DOM)
 - [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor)
 - [react-autolayout](https://github.com/fattenap/react-autolayout)
 - [famous-autolayout](https://github.com/IjzerenHein/famous-autolayout)
-
 
 ## Extended Visual Format Language (EVFL)
 
@@ -355,6 +352,7 @@ Single line comments can be used to explain the VFL or to prevent its execution:
     // [view2(view2.height/3)] <-- uncomment to enable
 
 ## Additional resources
+
 - [Apple's Auto Layout](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html)
 - [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html)
 - [Cassowary.js](https://github.com/slightlyoff/cassowary.js)
@@ -363,7 +361,6 @@ Single line comments can be used to explain the VFL or to prevent its execution:
 - [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor)
 - [famous-autolayout](https://github.com/IjzerenHein/famous-autolayout)
 - [famous-flex](https://github.com/IjzerenHein/famous-flex)
-
 
 ## Roadmap
 
@@ -377,8 +374,8 @@ feature complete is very welcome:
 - [ ] Get constraint definitions from `View`
 - [ ] LTR (left to right reading) (Attribute.LEADING & Attribute.TRAILING)
 - [ ] Baseline support?
-<!-- - [ ] Remove constraints? -->
-<!-- - [ ] DOM layouting primitives -->
+  <!-- - [ ] Remove constraints? -->
+  <!-- - [ ] DOM layouting primitives -->
 
 ## Contribute
 
@@ -388,10 +385,10 @@ and give it a star.
 If you want to participate in development, drop me a line or just issue a pull request.
 Also have a look at [CONTRIBUTING](./CONTRIBUTING.md).
 
-
 ## Contact
--   @IjzerenHein
--   hrutjes@gmail.com (for hire)
+
+- @IjzerenHein
+- hrutjes@gmail.com (for hire)
 
 ## License
 
@@ -400,7 +397,7 @@ Also have a look at [CONTRIBUTING](./CONTRIBUTING.md).
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
-<!-- 
+<!--
 TODO
 
 ## Status
