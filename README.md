@@ -392,10 +392,10 @@ Also have a look at [CONTRIBUTING](./CONTRIBUTING.md).
 
 ## License
 
-© 2015-2016 Hein Rutjes
+© 2015 Hein Rutjes
 © 2021 Joseph Orbegoso Pea (http://github.com/trusktr)
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://tldrlegal.com/license/mit-license)
 
 <!--
 TODO
