@@ -1,6 +1,10 @@
+# @lume/autolayout
+
 <!-- ![Logo](logo.png) -->
 
 LUME AutoLayout implements Apple's [Auto Layout](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html) and [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html) in Javascript (TypeScript), and will soon compile to WebAssembly via [AssemblyScript](http://assemblyscript.org/) for optimized layout calculation.
+
+<h4><code><strong>npm install @lume/autolayout</strong></code></h4>
 
 Auto layout is a system which lets you perform layout using mathematical relationships (constraints). It uses the [LUME Kiwi](https://github.com/lume/kiwi) library to do the actual constraint resolving and implements Apple's constraint system and Visual Format Language (vfl) on top of that. It supports the [Extended VFL syntax](#extended-visual-format-language-evfl), including view-stacks and z-indexing.
 
@@ -384,11 +388,6 @@ and give it a star.
 
 If you want to participate in development, drop me a line or just issue a pull request.
 Also have a look at [CONTRIBUTING](./CONTRIBUTING.md).
-
-## Contact
-
-- @IjzerenHein
-- hrutjes@gmail.com (for hire)
 
 ## License
 
