@@ -483,6 +483,7 @@ class VisualFormat {
 			try {
 				return this.parseLine(visualFormat, options);
 			} catch (err) {
+				// @ts-ignore
 				err.source = visualFormat;
 				throw err;
 			}
@@ -518,7 +519,9 @@ class VisualFormat {
 				}
 			}
 		} catch (err) {
+			// @ts-ignore
 			err.source = line;
+			// @ts-ignore
 			err.line = lineIndex;
 			throw err;
 		}

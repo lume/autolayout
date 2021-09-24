@@ -16,31 +16,31 @@ var constraints = AutoLayout.VisualFormat.parse(
 		'V:|[view1,view2]|', // The vertical aspect of the layout
 	],
 	{extended: true},
-)
+);
 
 // Create a view, uses the constraints to calculate the actual positioning and sizing of spaces in the layout:
-var view = new AutoLayout.View({constraints: constraints})
-view.setSize(400, 500)
+var view = new AutoLayout.View({constraints: constraints});
+view.setSize(400, 500);
 
 // Access each space in the calculated layout:
-console.log(view.subViews.view1) // {left: 0, top: 0, width: 195, height: 500}
-console.log(view.subViews.view2) // {left: 205, top: 0, width: 195, height: 500}
+console.log(view.subViews.view1); // {left: 0, top: 0, width: 195, height: 500}
+console.log(view.subViews.view2); // {left: 205, top: 0, width: 195, height: 500}
 
 // Finally apply the layout to your rendering system. Autolayout is not coupled to any particular rendering system.
 
 // For example, position DOM elements where they should be:
-const el1 = document.querySelector('.view1')
-el1.style.transform = `transform(${view.subViews.view1.left}px, ${view.subViews.view1.top}px)`
-el1.style.width = view.subViews.view1.width + 'px'
-el1.style.height = view.subViews.view1.height + 'px'
-const el2 = document.querySelector('.view1')
-el2.style.transform = `transform(${view.subViews.view2.left}px, ${view.subViews.view2.top}px)`
-el2.style.width = view.subViews.view2.width + 'px'
-el2.style.height = view.subViews.view2.height + 'px'
+const el1 = document.querySelector('.view1');
+el1.style.transform = `transform(${view.subViews.view1.left}px, ${view.subViews.view1.top}px)`;
+el1.style.width = view.subViews.view1.width + 'px';
+el1.style.height = view.subViews.view1.height + 'px';
+const el2 = document.querySelector('.view1');
+el2.style.transform = `transform(${view.subViews.view2.left}px, ${view.subViews.view2.top}px)`;
+el2.style.width = view.subViews.view2.width + 'px';
+el2.style.height = view.subViews.view2.height + 'px';
 
 // Or if you're in WebGL using Three.js, then apply values to your meshes:
-mesh.postion.set(view.subViews.view2.left, -view.subViews.view2.top, 0)
-mesh.scale.set(view.subViews.view2.width, view.subViews.view2.height, 1)
+mesh.postion.set(view.subViews.view2.left, -view.subViews.view2.top, 0);
+mesh.scale.set(view.subViews.view2.width, view.subViews.view2.height, 1);
 ```
 
 Layouts can be previewed and debugged using the [Visual Format Editor](https://github.com/IjzerenHein/visualformat-editor):
@@ -76,7 +76,7 @@ Include the library in your HTML project:
 
 ```html
 <script type="module">
-	import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module'
+	import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module';
 	// ...use AutoLayout here...
 </script>
 ```
@@ -84,7 +84,7 @@ Include the library in your HTML project:
 Or when using a bundler like Webpack or Rollup, use:
 
 ```js
-import AutoLayout from '@lume/autolayout'
+import AutoLayout from '@lume/autolayout';
 // ...use AutoLayout here...
 ```
 
@@ -109,9 +109,9 @@ To parse VFL into constraints, use:
 try {
 	// The VFL can be either a string or an array of strings.
 	// strings may also contain '\n' which indicates that a new line of VFL will begin.
-	var constraints = AutoLayout.VisualFormat.parse(['|-[child(==child2)]-[child2]-|', 'V:|[child(==child2)]|'])
+	var constraints = AutoLayout.VisualFormat.parse(['|-[child(==child2)]-[child2]-|', 'V:|[child(==child2)]|']);
 } catch (err) {
-	console.log('parse error: ' + err.toString())
+	console.log('parse error: ' + err.toString());
 }
 ```
 
@@ -125,11 +125,11 @@ var view = new AutoLayout.View({
 	width: 100, // initial width (optional)
 	height: 200, // initial height (optional)
 	spacing: 10, // spacing size to use (optional, default: 8)
-})
+});
 
 // get the size and position of the sub-views
 for (var key in view.subViews) {
-	console.log(key + ': ' + view.subViews[key])
+	console.log(key + ': ' + view.subViews[key]);
 	// e.g. {
 	//   name: 'child1',
 	//   left: 20,
@@ -143,11 +143,11 @@ for (var key in view.subViews) {
 By changing the size, the layout is re-evaluated and the subView's are updated:
 
 ```javascript
-view.setSize(300, 600)
+view.setSize(300, 600);
 
 // get the new size & position of the sub-views
 for (var key in view.subViews) {
-	console.log(key + ': ' + view.subViews[key])
+	console.log(key + ': ' + view.subViews[key]);
 }
 ```
 
@@ -183,8 +183,8 @@ view.addConstraint({
 Apple's Visual Format Language prefers good notation over completeness of expressibility. Because of this some useful constraints cannot be expressed by "Standard" VFL. LUME AutoLayout defines an extended syntax (superset of VFL) which you opt-in to use. To enable the extended syntax, set option `extended` to `true` when parsing the visual format:
 
 ```javascript
-var evfl = '|-[view1(==50%)]'
-var constraints = AutoLayout.VisualFormat.parse(evfl, {extended: true})
+var evfl = '|-[view1(==50%)]';
+var constraints = AutoLayout.VisualFormat.parse(evfl, {extended: true});
 ```
 
 ### Language features
