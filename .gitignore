@@ -8,4 +8,4 @@ tmp
 *.lock
 *lock.json
 
-es
+es/

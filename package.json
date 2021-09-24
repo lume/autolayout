@@ -66,7 +66,7 @@
 	},
 	"scripts": {
 		"build": "npm run clean && tsc",
-		"format": "prettier . --write",
+		"format": "prettier . --write --ignore-path .gitignore",
 		"clean": "rimraf es",
 		"test": "mocha",
 		"release:patch": "npm run build && npm test && npm version patch --message 'v%s' && npm publish && git push --follow-tags",
