@@ -65,7 +65,7 @@
 		"@lume/kiwi": "^0.1.0"
 	},
 	"scripts": {
-		"build": "npm run clean && tsc",
+		"build": "npm run clean && tsc #",
 		"format": "prettier . --write --ignore-path .gitignore",
 		"clean": "rimraf es",
 		"test": "mocha",
