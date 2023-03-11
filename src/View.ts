@@ -6,7 +6,7 @@ import SubView from './SubView.js';
 const defaultPriorityStrength = kiwi.Strength.create(0, 1000, 1000);
 
 /**
- * AutoLayout API reference.
+ * AutoLayoutJS API reference.
  *
  * ### Index
  *

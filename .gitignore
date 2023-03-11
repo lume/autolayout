@@ -1,10 +1,11 @@
 .vscode
 node_modules
-tmp/
-es/
-/coverage
-lib/
+bower_components
+npm-debug.log
+tmp
 /cassowary.js
 
 *.lock
 *lock.json
+
+es/

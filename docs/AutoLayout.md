@@ -1,10 +1,10 @@
 <a name="module_AutoLayout"></a>
 
-# AutoLayout
+## AutoLayout
 
-AutoLayout API reference.
+AutoLayoutJS API reference.
 
-## Index
+### Index
 
 | Entity                                          | Type        | Description                                                                                                         |
 | ----------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,7 @@ AutoLayout API reference.
 | [Relation](#autolayoutrelation--enum)           | `enum`      | Relationship types that are supported when adding constraints.                                                      |
 | [Priority](#autolayoutpriority--enum)           | `enum`      | Default priority values for when adding constraints.                                                                |
 
-## AutoLayout
+### AutoLayout
 
 - [AutoLayout](#module_AutoLayout)
   - [~View](#module_AutoLayout..View)
@@ -55,7 +55,7 @@ AutoLayout API reference.
 
 <a name="module_AutoLayout..View"></a>
 
-## AutoLayout~View
+### AutoLayout~View
 
 **Kind**: inner class of <code>[AutoLayout](#module_AutoLayout)</code>
 
@@ -73,7 +73,7 @@ AutoLayout API reference.
 
 <a name="new_module_AutoLayout..View_new"></a>
 
-### new View([options])
+#### new View([options])
 
 | Param                 | Type                                           | Description                                                |
 | --------------------- | ---------------------------------------------- | ---------------------------------------------------------- |
@@ -85,7 +85,7 @@ AutoLayout API reference.
 
 <a name="module_AutoLayout..View+width"></a>
 
-### view.width : <code>Number</code>
+#### view.width : <code>Number</code>
 
 Width that was set using `setSize`.
 
@@ -93,7 +93,7 @@ Width that was set using `setSize`.
 **Read only**: true  
 <a name="module_AutoLayout..View+height"></a>
 
-### view.height : <code>Number</code>
+#### view.height : <code>Number</code>
 
 Height that was set using `setSize`.
 
@@ -101,7 +101,7 @@ Height that was set using `setSize`.
 **Read only**: true  
 <a name="module_AutoLayout..View+fittingWidth"></a>
 
-### view.fittingWidth : <code>Number</code>
+#### view.fittingWidth : <code>Number</code>
 
 Width that is calculated from the constraints and the `.intrinsicWidth` of
 the sub-views.
@@ -124,7 +124,7 @@ console.log('fittingWidth: ' + view.fittingWidth); // 260
 **Read only**: true  
 <a name="module_AutoLayout..View+fittingHeight"></a>
 
-### view.fittingHeight : <code>Number</code>
+#### view.fittingHeight : <code>Number</code>
 
 Height that is calculated from the constraints and the `.intrinsicHeight` of
 the sub-views.
@@ -135,7 +135,7 @@ See `.fittingWidth`.
 **Read only**: true  
 <a name="module_AutoLayout..View+subViews"></a>
 
-### view.subViews : <code>Object.SubView</code>
+#### view.subViews : <code>Object.SubView</code>
 
 Dictionary of `SubView` objects that have been created when adding constraints.
 
@@ -143,7 +143,7 @@ Dictionary of `SubView` objects that have been created when adding constraints.
 **Read only**: true  
 <a name="module_AutoLayout..View+setSize"></a>
 
-### view.setSize(width, height) ⇒ <code>View</code>
+#### view.setSize(width, height) ⇒ <code>View</code>
 
 Sets the width and height of the view.
 
@@ -157,7 +157,7 @@ Sets the width and height of the view.
 
 <a name="module_AutoLayout..View+setSpacing"></a>
 
-### view.setSpacing(spacing) ⇒ <code>View</code>
+#### view.setSpacing(spacing) ⇒ <code>View</code>
 
 Sets the spacing for the view.
 
@@ -195,7 +195,7 @@ view.setSpacing([10, 20, 10, 20, 5, 5, 1]); // top, right, bottom, left, horizon
 
 <a name="module_AutoLayout..View+addConstraint"></a>
 
-### view.addConstraint(constraint) ⇒ <code>View</code>
+#### view.addConstraint(constraint) ⇒ <code>View</code>
 
 Adds a constraint definition.
 
@@ -223,7 +223,7 @@ constraint: {
 
 <a name="module_AutoLayout..View+addConstraints"></a>
 
-### view.addConstraints(constraints) ⇒ <code>View</code>
+#### view.addConstraints(constraints) ⇒ <code>View</code>
 
 Adds one or more constraint definitions.
 
@@ -251,7 +251,7 @@ constraint: {
 
 <a name="module_AutoLayout..SubView"></a>
 
-## AutoLayout~SubView : <code>object</code>
+### AutoLayout~SubView : <code>object</code>
 
 A SubView is automatically generated when constraints are added to a View.
 
@@ -275,7 +275,7 @@ A SubView is automatically generated when constraints are added to a View.
 
 <a name="module_AutoLayout..SubView+name"></a>
 
-### subView.name : <code>String</code>
+#### subView.name : <code>String</code>
 
 Name of the sub-view.
 
@@ -283,7 +283,7 @@ Name of the sub-view.
 **Read only**: true  
 <a name="module_AutoLayout..SubView+left"></a>
 
-### subView.left : <code>Number</code>
+#### subView.left : <code>Number</code>
 
 Left value (`Attribute.LEFT`).
 
@@ -291,7 +291,7 @@ Left value (`Attribute.LEFT`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+right"></a>
 
-### subView.right : <code>Number</code>
+#### subView.right : <code>Number</code>
 
 Right value (`Attribute.RIGHT`).
 
@@ -299,14 +299,14 @@ Right value (`Attribute.RIGHT`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+width"></a>
 
-### subView.width : <code>Number</code>
+#### subView.width : <code>Number</code>
 
 Width value (`Attribute.WIDTH`).
 
 **Kind**: instance property of <code>[SubView](#module_AutoLayout..SubView)</code>  
 <a name="module_AutoLayout..SubView+height"></a>
 
-### subView.height : <code>Number</code>
+#### subView.height : <code>Number</code>
 
 Height value (`Attribute.HEIGHT`).
 
@@ -314,7 +314,7 @@ Height value (`Attribute.HEIGHT`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+intrinsicWidth"></a>
 
-### subView.intrinsicWidth : <code>Number</code>
+#### subView.intrinsicWidth : <code>Number</code>
 
 Intrinsic width of the sub-view.
 
@@ -331,7 +331,7 @@ console.log('child2 width: ' + view.subViews.child2.width); // 400
 **Kind**: instance property of <code>[SubView](#module_AutoLayout..SubView)</code>  
 <a name="module_AutoLayout..SubView+intrinsicHeight"></a>
 
-### subView.intrinsicHeight : <code>Number</code>
+#### subView.intrinsicHeight : <code>Number</code>
 
 Intrinsic height of the sub-view.
 
@@ -340,7 +340,7 @@ See `intrinsicWidth`.
 **Kind**: instance property of <code>[SubView](#module_AutoLayout..SubView)</code>  
 <a name="module_AutoLayout..SubView+top"></a>
 
-### subView.top : <code>Number</code>
+#### subView.top : <code>Number</code>
 
 Top value (`Attribute.TOP`).
 
@@ -348,7 +348,7 @@ Top value (`Attribute.TOP`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+bottom"></a>
 
-### subView.bottom : <code>Number</code>
+#### subView.bottom : <code>Number</code>
 
 Bottom value (`Attribute.BOTTOM`).
 
@@ -356,7 +356,7 @@ Bottom value (`Attribute.BOTTOM`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+centerX"></a>
 
-### subView.centerX : <code>Number</code>
+#### subView.centerX : <code>Number</code>
 
 Horizontal center (`Attribute.CENTERX`).
 
@@ -364,7 +364,7 @@ Horizontal center (`Attribute.CENTERX`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+centerY"></a>
 
-### subView.centerY : <code>Number</code>
+#### subView.centerY : <code>Number</code>
 
 Vertical center (`Attribute.CENTERY`).
 
@@ -372,7 +372,7 @@ Vertical center (`Attribute.CENTERY`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+zIndex"></a>
 
-### subView.zIndex : <code>Number</code>
+#### subView.zIndex : <code>Number</code>
 
 Z-index (`Attribute.ZINDEX`).
 
@@ -380,7 +380,7 @@ Z-index (`Attribute.ZINDEX`).
 **Read only**: true  
 <a name="module_AutoLayout..SubView+type"></a>
 
-### subView.type : <code>String</code>
+#### subView.type : <code>String</code>
 
 Returns the type of the sub-view.
 
@@ -388,7 +388,7 @@ Returns the type of the sub-view.
 **Read only**: true  
 <a name="module_AutoLayout..SubView+getValue"></a>
 
-### subView.getValue(attr) ⇒ <code>Number</code>
+#### subView.getValue(attr) ⇒ <code>Number</code>
 
 Gets the value of one of the attributes.
 
@@ -401,7 +401,7 @@ Gets the value of one of the attributes.
 
 <a name="module_AutoLayout..VisualFormat"></a>
 
-## AutoLayout~VisualFormat : <code>object</code>
+### AutoLayout~VisualFormat : <code>object</code>
 
 VisualFormat
 
@@ -414,7 +414,7 @@ VisualFormat
 
 <a name="module_AutoLayout..VisualFormat.parseLine"></a>
 
-### VisualFormat.parseLine(visualFormat, [options]) ⇒ <code>Array</code>
+#### VisualFormat.parseLine(visualFormat, [options]) ⇒ <code>Array</code>
 
 Parses a single line of vfl into an array of constraint definitions.
 
@@ -434,7 +434,7 @@ additional info about the parse error and column position.
 
 <a name="module_AutoLayout..VisualFormat.parse"></a>
 
-### VisualFormat.parse(visualFormat, [options]) ⇒ <code>Array</code>
+#### VisualFormat.parse(visualFormat, [options]) ⇒ <code>Array</code>
 
 Parses one or more visual format strings into an array of constraint definitions.
 
@@ -455,7 +455,7 @@ additional info about the parse error and column position.
 
 <a name="module_AutoLayout..VisualFormat.parseMetaInfo"></a>
 
-### VisualFormat.parseMetaInfo(visualFormat, [options]) ⇒ <code>Object</code>
+#### VisualFormat.parseMetaInfo(visualFormat, [options]) ⇒ <code>Object</code>
 
 Parses meta information from the comments in the VFL.
 
@@ -501,7 +501,7 @@ Supported categories and properties:
 
 <a name="module_AutoLayout..Attribute"></a>
 
-## AutoLayout~Attribute : <code>enum</code>
+### AutoLayout~Attribute : <code>enum</code>
 
 Layout attributes.
 
@@ -525,7 +525,7 @@ Layout attributes.
 
 <a name="module_AutoLayout..Relation"></a>
 
-## AutoLayout~Relation : <code>enum</code>
+### AutoLayout~Relation : <code>enum</code>
 
 Relation types.
 
@@ -540,7 +540,7 @@ Relation types.
 
 <a name="module_AutoLayout..Priority"></a>
 
-## AutoLayout~Priority : <code>enum</code>
+### AutoLayout~Priority : <code>enum</code>
 
 Layout priorities.
 
