@@ -62,7 +62,7 @@
 		"typescript": "4.4.3"
 	},
 	"dependencies": {
-		"@lume/kiwi": "^0.1.0"
+		"@lume/kiwi": "^0.2.0"
 	},
 	"scripts": {
 		"build": "npm run clean && tsc #",
