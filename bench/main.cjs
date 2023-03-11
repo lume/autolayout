@@ -1,13 +1,16 @@
 /*global module:false*/
 /*eslint strict:false, quotes: [2, "single"] */
 
+var Benchmark = typeof window === 'undefined' ? require('benchmark') : window.Benchmark;
+
+async function getAutoLayout() {
+	if (typeof window === 'undefined') return (await import('../es/AutoLayout.js')).default;
+	else return window.AutoLayout;
+}
+
+main();
 async function main() {
-	var assert = typeof window === 'undefined' ? require('assert') : window.chai.assert;
-	var _ = typeof window === 'undefined' ? require('lodash') : window._;
-	var Platform = typeof window === 'undefined' ? require('platform') : window.Platform;
-	var Benchmark = typeof window === 'undefined' ? require('benchmark') : window.Benchmark;
-	// var AutoLayout = typeof window === 'undefined' ? require('../dist/autolayout') : window.AutoLayout;
-	var AutoLayout = typeof window === 'undefined' ? (await import('../es/AutoLayout.js')).default : window.AutoLayout;
+	const AutoLayout = await getAutoLayout();
 
 	var logElement;
 	function log(message) {
@@ -84,6 +87,7 @@ async function main() {
 	runBench('LUME AutoLayout', [
 		{name: 'parse', fn: parseVFL},
 		{name: 'create', fn: createView},
+		// FIXME this doesn't run when in CLI (Node.js), but does run when in the browser.
 		{name: 'solve', fn: solveView},
 	]);
 }

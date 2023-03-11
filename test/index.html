@@ -6,27 +6,19 @@
 	</head>
 	<body>
 		<div id="mocha"></div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
-
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
 		<script>
 			mocha.setup('bdd');
 		</script>
-
-		<script type="module">
-			import AutoLayout from '../es/AutoLayout.js';
-			window.AutoLayout = AutoLayout;
-
-			// TODO move tests to new system
-
-			async function test() {
-				await import('./VisualFormat.js');
-				await import('./ExtendedVisualFormat.js');
-				await import('./View.js');
-
-				mocha.checkLeaks();
-				mocha.run();
-			}
+		<script src="../node_modules/@lume/kiwi/lib/kiwi.min.js"></script>
+		<script type="text/javascript" src="../lib/autolayout.js"></script>
+		<script type="text/javascript" src="./VisualFormat.cjs"></script>
+		<script type="text/javascript" src="./ExtendedVisualFormat.cjs"></script>
+		<script type="text/javascript" src="./View.cjs"></script>
+		<script>
+			mocha.checkLeaks();
+			mocha.run();
 		</script>
 	</body>
 </html>

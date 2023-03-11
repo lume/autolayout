@@ -1,0 +1,6 @@
+tmp/
+es/
+/coverage
+lib/
+
+src/parser/

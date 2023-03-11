@@ -15,3 +15,4 @@ var AutoLayout = {
 };
 
 export default AutoLayout;
+export {Attribute, Relation, Priority, VisualFormat, View, SubView};

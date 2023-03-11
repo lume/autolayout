@@ -1,0 +1,33 @@
+name: tests
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ${{ matrix.operating-system }}
+
+        strategy:
+            matrix:
+                operating-system: [ubuntu-latest, windows-latest, macos-latest]
+
+        steps:
+            - uses: actions/checkout@v1
+              with:
+                  submodules: 'recursive'
+                  token: ${{ secrets.ACCESS_TOKEN }}
+            - name: Use Node.js latest
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 17
+            - name: npm install, build, and test
+              # Note, we run bench and cov just to make sure they run successfully, but we're not doing anything with the results yet.
+              run: |
+                  npm install
+                  npm run build:parser
+                  npm run build
+                  npm run doc
+                  npm run bench
+                  npm test
+                  npm run cov
+              env:
+                  CI: true
