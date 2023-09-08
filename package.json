@@ -76,7 +76,6 @@
 		"format": "prettier . --write --ignore-path .gitignore",
 		"lint": "prettier . --check",
 		"doc": "npm run grunt -- doc && node scripts/docs-update-headings.js && prettier docs/AutoLayout.md --write",
-		"prepare": "npm run build",
 		"grunt": "grunt --gruntfile Gruntfile.cjs",
 		"release:patch": "npm run build && npm test && npm version patch --message 'v%s' && npm publish && git push --follow-tags",
 		"release:minor": "npm run build && npm test && npm version minor --message 'v%s' && npm publish && git push --follow-tags",

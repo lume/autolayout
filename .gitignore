@@ -1,10 +1,7 @@
 .vscode
 node_modules
 tmp/
-es/
 /coverage
-lib/
-/cassowary.js
 
 *.lock
 *lock.json
