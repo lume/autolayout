@@ -74,7 +74,7 @@
 		"cov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -R",
 		"bench": "node bench/main.cjs",
 		"format": "npm run prettier",
-		"prettier": "prettier . --write --ignore-path .gitignore",
+		"prettier": "prettier . --write",
 		"lint": "prettier . --check",
 		"doc": "npm run grunt -- doc && node scripts/docs-update-headings.js && prettier docs/AutoLayout.md --write",
 		"grunt": "grunt --gruntfile Gruntfile.cjs",
