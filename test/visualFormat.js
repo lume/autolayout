@@ -3,7 +3,8 @@ var assert = typeof window === 'undefined' ? (await import('assert')).default : 
 
 describe('import AutoLayout', function () {
 	it('imports AutoLayout', async function () {
-		const AutoLayout = await import('@lume/autolayout')
+		// const AutoLayout = await import('@lume/autolayout') // self-referencing import does not work due to https://github.com/nodejs/node/issues/50334
+		const AutoLayout = await import('../dist/AutoLayout.js')
 
 		describe('VisualFormat', function () {
 			describe('parse', function () {

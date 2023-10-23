@@ -5,7 +5,8 @@ var Benchmark = typeof window === 'undefined' ? (await import('benchmark')).defa
 
 main()
 async function main() {
-	const AutoLayout = await import('@lume/autolayout')
+	// const AutoLayout = await import('@lume/autolayout') // self-referencing import does not work due to https://github.com/nodejs/node/issues/50334
+	const AutoLayout = await import('../dist/AutoLayout.js')
 
 	var logElement
 	function log(message) {
