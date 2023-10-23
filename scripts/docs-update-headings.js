@@ -1,8 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 
-let docs = fs.readFileSync(path.resolve('.', 'docs', 'AutoLayout.md')).toString();
+let docs = fs.readFileSync(path.resolve('.', 'docs', 'AutoLayout.md')).toString()
 
-docs = docs.replace(/^#/gm, '');
+docs = docs.replace(/^#/gm, '')
 
-fs.writeFileSync(path.resolve('.', 'docs', 'AutoLayout.md'), docs);
+fs.writeFileSync(path.resolve('.', 'docs', 'AutoLayout.md'), docs)

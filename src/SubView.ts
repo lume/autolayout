@@ -1,5 +1,5 @@
-import * as kiwi from '@lume/kiwi';
-import Attribute from './Attribute.js';
+import * as kiwi from '@lume/kiwi'
+import Attribute from './Attribute.js'
 
 /**
  * A SubView is automatically generated when constraints are added to a View.
@@ -7,25 +7,25 @@ import Attribute from './Attribute.js';
  * @namespace SubView
  */
 class SubView {
-	declare _name;
-	declare _type;
-	declare _solver;
-	declare _attr;
-	declare _intrinsicWidth: number;
-	declare _intrinsicHeight: number;
+	declare _name
+	declare _type
+	declare _solver
+	declare _attr
+	declare _intrinsicWidth: number
+	declare _intrinsicHeight: number
 
 	constructor(options) {
-		this._name = options.name;
-		this._type = options.type;
-		this._solver = options.solver;
-		this._attr = {};
+		this._name = options.name
+		this._type = options.type
+		this._solver = options.solver
+		this._attr = {}
 		if (!options.name) {
-			this._attr[Attribute.LEFT] = new kiwi.Variable();
-			this._solver.addConstraint(new kiwi.Constraint(this._attr[Attribute.LEFT], kiwi.Operator.Eq, 0));
-			this._attr[Attribute.TOP] = new kiwi.Variable();
-			this._solver.addConstraint(new kiwi.Constraint(this._attr[Attribute.TOP], kiwi.Operator.Eq, 0));
-			this._attr[Attribute.ZINDEX] = new kiwi.Variable();
-			this._solver.addConstraint(new kiwi.Constraint(this._attr[Attribute.ZINDEX], kiwi.Operator.Eq, 0));
+			this._attr[Attribute.LEFT] = new kiwi.Variable()
+			this._solver.addConstraint(new kiwi.Constraint(this._attr[Attribute.LEFT], kiwi.Operator.Eq, 0))
+			this._attr[Attribute.TOP] = new kiwi.Variable()
+			this._solver.addConstraint(new kiwi.Constraint(this._attr[Attribute.TOP], kiwi.Operator.Eq, 0))
+			this._attr[Attribute.ZINDEX] = new kiwi.Variable()
+			this._solver.addConstraint(new kiwi.Constraint(this._attr[Attribute.ZINDEX], kiwi.Operator.Eq, 0))
 		}
 	}
 	toJSON() {
@@ -35,10 +35,10 @@ class SubView {
 			top: this.top,
 			width: this.width,
 			height: this.height,
-		};
+		}
 	}
 	toString() {
-		JSON.stringify(this.toJSON(), undefined, 2);
+		JSON.stringify(this.toJSON(), undefined, 2)
 	}
 
 	/**
@@ -47,7 +47,7 @@ class SubView {
 	 * @type {String}
 	 */
 	get name() {
-		return this._name;
+		return this._name
 	}
 
 	/**
@@ -56,7 +56,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get left() {
-		return this._getAttrValue(Attribute.LEFT);
+		return this._getAttrValue(Attribute.LEFT)
 	}
 
 	/**
@@ -65,7 +65,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get right() {
-		return this._getAttrValue(Attribute.RIGHT);
+		return this._getAttrValue(Attribute.RIGHT)
 	}
 
 	/**
@@ -73,7 +73,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get width() {
-		return this._getAttrValue(Attribute.WIDTH);
+		return this._getAttrValue(Attribute.WIDTH)
 	}
 
 	/**
@@ -82,7 +82,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get height() {
-		return this._getAttrValue(Attribute.HEIGHT);
+		return this._getAttrValue(Attribute.HEIGHT)
 	}
 
 	/**
@@ -100,17 +100,17 @@ class SubView {
 	 * @type {Number}
 	 */
 	get intrinsicWidth(): number {
-		return this._intrinsicWidth;
+		return this._intrinsicWidth
 	}
 	set intrinsicWidth(value: number) {
 		if (value !== undefined && value !== this._intrinsicWidth) {
-			const attr = this._getAttr(Attribute.WIDTH);
+			const attr = this._getAttr(Attribute.WIDTH)
 			if (this._intrinsicWidth === undefined) {
-				this._solver.addEditVariable(attr, kiwi.Strength.create(this._name ? 998 : 999, 1000, 1000));
+				this._solver.addEditVariable(attr, kiwi.Strength.create(this._name ? 998 : 999, 1000, 1000))
 			}
-			this._intrinsicWidth = value;
-			this._solver.suggestValue(attr, value);
-			this._solver.updateVariables();
+			this._intrinsicWidth = value
+			this._solver.suggestValue(attr, value)
+			this._solver.updateVariables()
 		}
 	}
 
@@ -122,17 +122,17 @@ class SubView {
 	 * @type {Number}
 	 */
 	get intrinsicHeight(): number {
-		return this._intrinsicHeight;
+		return this._intrinsicHeight
 	}
 	set intrinsicHeight(value: number) {
 		if (value !== undefined && value !== this._intrinsicHeight) {
-			const attr = this._getAttr(Attribute.HEIGHT);
+			const attr = this._getAttr(Attribute.HEIGHT)
 			if (this._intrinsicHeight === undefined) {
-				this._solver.addEditVariable(attr, kiwi.Strength.create(this._name ? 998 : 999, 1000, 1000));
+				this._solver.addEditVariable(attr, kiwi.Strength.create(this._name ? 998 : 999, 1000, 1000))
 			}
-			this._intrinsicHeight = value;
-			this._solver.suggestValue(attr, value);
-			this._solver.updateVariables();
+			this._intrinsicHeight = value
+			this._solver.suggestValue(attr, value)
+			this._solver.updateVariables()
 		}
 	}
 
@@ -142,7 +142,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get top() {
-		return this._getAttrValue(Attribute.TOP);
+		return this._getAttrValue(Attribute.TOP)
 	}
 
 	/**
@@ -151,7 +151,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get bottom() {
-		return this._getAttrValue(Attribute.BOTTOM);
+		return this._getAttrValue(Attribute.BOTTOM)
 	}
 
 	/**
@@ -160,7 +160,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get centerX() {
-		return this._getAttrValue(Attribute.CENTERX);
+		return this._getAttrValue(Attribute.CENTERX)
 	}
 
 	/**
@@ -169,7 +169,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get centerY() {
-		return this._getAttrValue(Attribute.CENTERY);
+		return this._getAttrValue(Attribute.CENTERY)
 	}
 
 	/**
@@ -178,7 +178,7 @@ class SubView {
 	 * @type {Number}
 	 */
 	get zIndex() {
-		return this._getAttrValue(Attribute.ZINDEX);
+		return this._getAttrValue(Attribute.ZINDEX)
 	}
 
 	/**
@@ -187,7 +187,7 @@ class SubView {
 	 * @type {String}
 	 */
 	get type() {
-		return this._type;
+		return this._type
 	}
 
 	/**
@@ -197,7 +197,7 @@ class SubView {
 	 * @return {Number} value or `undefined`
 	 */
 	getValue(attr) {
-		return this._attr[attr] ? this._attr[attr].value() : undefined;
+		return this._attr[attr] ? this._attr[attr].value() : undefined
 	}
 
 	/**
@@ -205,65 +205,65 @@ class SubView {
 	 */
 	_getAttr(attr) {
 		if (this._attr[attr]) {
-			return this._attr[attr];
+			return this._attr[attr]
 		}
-		this._attr[attr] = new kiwi.Variable();
+		this._attr[attr] = new kiwi.Variable()
 		switch (attr) {
 			case Attribute.RIGHT:
-				this._getAttr(Attribute.LEFT);
-				this._getAttr(Attribute.WIDTH);
+				this._getAttr(Attribute.LEFT)
+				this._getAttr(Attribute.WIDTH)
 				this._solver.addConstraint(
 					new kiwi.Constraint(
 						this._attr[attr],
 						kiwi.Operator.Eq,
 						this._attr[Attribute.LEFT].plus(this._attr[Attribute.WIDTH]),
 					),
-				);
-				break;
+				)
+				break
 			case Attribute.BOTTOM:
-				this._getAttr(Attribute.TOP);
-				this._getAttr(Attribute.HEIGHT);
+				this._getAttr(Attribute.TOP)
+				this._getAttr(Attribute.HEIGHT)
 				this._solver.addConstraint(
 					new kiwi.Constraint(
 						this._attr[attr],
 						kiwi.Operator.Eq,
 						this._attr[Attribute.TOP].plus(this._attr[Attribute.HEIGHT]),
 					),
-				);
-				break;
+				)
+				break
 			case Attribute.CENTERX:
-				this._getAttr(Attribute.LEFT);
-				this._getAttr(Attribute.WIDTH);
+				this._getAttr(Attribute.LEFT)
+				this._getAttr(Attribute.WIDTH)
 				this._solver.addConstraint(
 					new kiwi.Constraint(
 						this._attr[attr],
 						kiwi.Operator.Eq,
 						this._attr[Attribute.LEFT].plus(this._attr[Attribute.WIDTH].divide(2)),
 					),
-				);
-				break;
+				)
+				break
 			case Attribute.CENTERY:
-				this._getAttr(Attribute.TOP);
-				this._getAttr(Attribute.HEIGHT);
+				this._getAttr(Attribute.TOP)
+				this._getAttr(Attribute.HEIGHT)
 				this._solver.addConstraint(
 					new kiwi.Constraint(
 						this._attr[attr],
 						kiwi.Operator.Eq,
 						this._attr[Attribute.TOP].plus(this._attr[Attribute.HEIGHT].divide(2)),
 					),
-				);
-				break;
+				)
+				break
 		}
-		this._solver.updateVariables();
-		return this._attr[attr];
+		this._solver.updateVariables()
+		return this._attr[attr]
 	}
 
 	/**
 	 * @private
 	 */
 	_getAttrValue(attr) {
-		return this._getAttr(attr).value();
+		return this._getAttr(attr).value()
 	}
 }
 
-export default SubView;
+export default SubView

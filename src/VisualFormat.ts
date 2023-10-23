@@ -1,13 +1,13 @@
-import parser from './parser/parser.js';
-import parserExt from './parser/parserExt.js';
-import Attribute from './Attribute.js';
-import Relation from './Relation.js';
+import parser from './parser/parser.js'
+import parserExt from './parser/parserExt.js'
+import Attribute from './Attribute.js'
+import Relation from './Relation.js'
 
 const Orientation = {
 	HORIZONTAL: 1,
 	VERTICAL: 2,
 	ZINDEX: 4,
-};
+}
 
 /**
  * Helper function that inserts equal spacers (~).
@@ -15,8 +15,8 @@ const Orientation = {
  */
 function _processEqualSpacer(context, stackView) {
 	// Determine unique name for the spacer
-	context.equalSpacerIndex = context.equalSpacerIndex || 1;
-	const name = '_~' + context.lineIndex + ':' + context.equalSpacerIndex + '~';
+	context.equalSpacerIndex = context.equalSpacerIndex || 1
+	const name = '_~' + context.lineIndex + ':' + context.equalSpacerIndex + '~'
 	if (context.equalSpacerIndex > 1) {
 		// Ensure that all spacers have the same width/height
 		context.constraints.push({
@@ -26,9 +26,9 @@ function _processEqualSpacer(context, stackView) {
 			view2: name,
 			attr2: context.horizontal ? Attribute.WIDTH : Attribute.HEIGHT,
 			priority: context.relation.priority,
-		});
+		})
 	}
-	context.equalSpacerIndex++;
+	context.equalSpacerIndex++
 
 	// Enforce view/proportional width/height
 	if (context.relation.view || (context.relation.multiplier && context.relation.multiplier !== 1)) {
@@ -40,8 +40,8 @@ function _processEqualSpacer(context, stackView) {
 			attr2: context.horizontal ? Attribute.WIDTH : Attribute.HEIGHT,
 			priority: context.relation.priority,
 			multiplier: context.relation.multiplier,
-		});
-		context.relation.multiplier = undefined;
+		})
+		context.relation.multiplier = undefined
 	} else if (context.relation.constant) {
 		context.constraints.push({
 			view1: name,
@@ -51,27 +51,27 @@ function _processEqualSpacer(context, stackView) {
 			attr2: Attribute.CONST,
 			priority: context.relation.priority,
 			constant: context.relation.constant,
-		});
-		context.relation.constant = undefined;
+		})
+		context.relation.constant = undefined
 	}
 
 	// Add constraint
 	for (var i = 0; i < context.prevViews.length; i++) {
-		const prevView = context.prevViews[i];
+		const prevView = context.prevViews[i]
 		switch (context.orientation) {
 			case Orientation.HORIZONTAL:
-				context.prevAttr = prevView !== stackView ? Attribute.RIGHT : Attribute.LEFT;
-				context.curAttr = Attribute.LEFT;
-				break;
+				context.prevAttr = prevView !== stackView ? Attribute.RIGHT : Attribute.LEFT
+				context.curAttr = Attribute.LEFT
+				break
 			case Orientation.VERTICAL:
-				context.prevAttr = prevView !== stackView ? Attribute.BOTTOM : Attribute.TOP;
-				context.curAttr = Attribute.TOP;
-				break;
+				context.prevAttr = prevView !== stackView ? Attribute.BOTTOM : Attribute.TOP
+				context.curAttr = Attribute.TOP
+				break
 			case Orientation.ZINDEX:
-				context.prevAttr = Attribute.ZINDEX;
-				context.curAttr = Attribute.ZINDEX;
-				context.relation.constant = prevView !== stackView ? 'default' : 0;
-				break;
+				context.prevAttr = Attribute.ZINDEX
+				context.curAttr = Attribute.ZINDEX
+				context.relation.constant = prevView !== stackView ? 'default' : 0
+				break
 		}
 		context.constraints.push({
 			view1: prevView,
@@ -80,9 +80,9 @@ function _processEqualSpacer(context, stackView) {
 			view2: name,
 			attr2: context.curAttr,
 			priority: context.relation.priority,
-		});
+		})
 	}
-	context.prevViews = [name];
+	context.prevViews = [name]
 }
 
 /**
@@ -90,9 +90,9 @@ function _processEqualSpacer(context, stackView) {
  * @private
  */
 function _processProportionalSpacer(context, stackView) {
-	context.proportionalSpacerIndex = context.proportionalSpacerIndex || 1;
-	const name = '_-' + context.lineIndex + ':' + context.proportionalSpacerIndex + '-';
-	context.proportionalSpacerIndex++;
+	context.proportionalSpacerIndex = context.proportionalSpacerIndex || 1
+	const name = '_-' + context.lineIndex + ':' + context.proportionalSpacerIndex + '-'
+	context.proportionalSpacerIndex++
 	context.constraints.push({
 		view1: name,
 		attr1: context.horizontal ? Attribute.WIDTH : Attribute.HEIGHT,
@@ -101,26 +101,26 @@ function _processProportionalSpacer(context, stackView) {
 		attr2: context.horizontal ? Attribute.WIDTH : Attribute.HEIGHT,
 		priority: context.relation.priority,
 		multiplier: context.relation.multiplier,
-	});
-	context.relation.multiplier = undefined;
+	})
+	context.relation.multiplier = undefined
 
 	// Add constraint
 	for (var i = 0; i < context.prevViews.length; i++) {
-		const prevView = context.prevViews[i];
+		const prevView = context.prevViews[i]
 		switch (context.orientation) {
 			case Orientation.HORIZONTAL:
-				context.prevAttr = prevView !== stackView ? Attribute.RIGHT : Attribute.LEFT;
-				context.curAttr = Attribute.LEFT;
-				break;
+				context.prevAttr = prevView !== stackView ? Attribute.RIGHT : Attribute.LEFT
+				context.curAttr = Attribute.LEFT
+				break
 			case Orientation.VERTICAL:
-				context.prevAttr = prevView !== stackView ? Attribute.BOTTOM : Attribute.TOP;
-				context.curAttr = Attribute.TOP;
-				break;
+				context.prevAttr = prevView !== stackView ? Attribute.BOTTOM : Attribute.TOP
+				context.curAttr = Attribute.TOP
+				break
 			case Orientation.ZINDEX:
-				context.prevAttr = Attribute.ZINDEX;
-				context.curAttr = Attribute.ZINDEX;
-				context.relation.constant = prevView !== stackView ? 'default' : 0;
-				break;
+				context.prevAttr = Attribute.ZINDEX
+				context.curAttr = Attribute.ZINDEX
+				context.relation.constant = prevView !== stackView ? 'default' : 0
+				break
 		}
 		context.constraints.push({
 			view1: prevView,
@@ -129,9 +129,9 @@ function _processProportionalSpacer(context, stackView) {
 			view2: name,
 			attr2: context.curAttr,
 			priority: context.relation.priority,
-		});
+		})
 	}
-	context.prevViews = [name];
+	context.prevViews = [name]
 }
 
 /**
@@ -139,18 +139,18 @@ function _processProportionalSpacer(context, stackView) {
  * @private
  */
 function _processStackView(context, name, subView) {
-	let viewName;
+	let viewName
 	for (var orientation = 1; orientation <= 4; orientation *= 2) {
 		if (
 			subView.orientations & orientation &&
 			subView.stack.orientation !== orientation &&
 			!(subView.stack.processedOrientations & orientation)
 		) {
-			subView.stack.processedOrientations = subView.stack.processedOrientations | orientation;
+			subView.stack.processedOrientations = subView.stack.processedOrientations | orientation
 			viewName = viewName || {
 				name: name,
 				type: 'stack',
-			};
+			}
 			for (var i = 0, j = subView.stack.subViews.length; i < j; i++) {
 				if (orientation === Orientation.ZINDEX) {
 					context.constraints.push({
@@ -159,7 +159,7 @@ function _processStackView(context, name, subView) {
 						relation: Relation.EQU,
 						view2: subView.stack.subViews[i],
 						attr2: Attribute.ZINDEX,
-					});
+					})
 				} else {
 					context.constraints.push({
 						view1: viewName,
@@ -167,14 +167,14 @@ function _processStackView(context, name, subView) {
 						relation: Relation.EQU,
 						view2: subView.stack.subViews[i],
 						attr2: orientation === Orientation.VERTICAL ? Attribute.HEIGHT : Attribute.WIDTH,
-					});
+					})
 					context.constraints.push({
 						view1: viewName,
 						attr1: orientation === Orientation.VERTICAL ? Attribute.TOP : Attribute.LEFT,
 						relation: Relation.EQU,
 						view2: subView.stack.subViews[i],
 						attr2: orientation === Orientation.VERTICAL ? Attribute.TOP : Attribute.LEFT,
-					});
+					})
 				}
 			}
 		}
@@ -188,32 +188,32 @@ function _processStackView(context, name, subView) {
  */
 function _getRange(name: string, range) {
 	if (range === true) {
-		range = name.match(/\.\.\d+$/);
+		range = name.match(/\.\.\d+$/)
 		if (range) {
-			name = name.substring(0, name.length - range[0].length);
-			range = parseInt(range[0].substring(2));
+			name = name.substring(0, name.length - range[0].length)
+			range = parseInt(range[0].substring(2))
 		}
 	}
 	if (!range) {
-		return [name];
+		return [name]
 	}
-	var start = name.match(/\d+$/);
-	var res: string[] = [];
-	var i;
+	var start = name.match(/\d+$/)
+	var res: string[] = []
+	var i
 	if (start) {
-		name = name.substring(0, name.length - start[0].length);
+		name = name.substring(0, name.length - start[0].length)
 		// FIXME
 		// @ts-expect-error what the heck is being passed into parseInt here?
 		for (i = parseInt(start); i <= range; i++) {
-			res.push(name + i);
+			res.push(name + i)
 		}
 	} else {
-		res.push(name);
+		res.push(name)
 		for (i = 2; i <= range; i++) {
-			res.push(name + i);
+			res.push(name + i)
 		}
 	}
-	return res;
+	return res
 }
 
 /**
@@ -221,45 +221,45 @@ function _getRange(name: string, range) {
  * @private
  */
 function _processCascade(context, cascade, parentItem) {
-	const stackView = parentItem ? parentItem.view : null;
-	const subViews: any[] = [];
-	let curViews: any[] = [];
-	let subView;
+	const stackView = parentItem ? parentItem.view : null
+	const subViews: any[] = []
+	let curViews: any[] = []
+	let subView
 	if (stackView) {
-		cascade.push({view: stackView});
-		curViews.push(stackView);
+		cascade.push({view: stackView})
+		curViews.push(stackView)
 	}
 	for (var i = 0; i < cascade.length; i++) {
-		let item = cascade[i];
+		let item = cascade[i]
 		if (
 			(!Array.isArray(item) && item.hasOwnProperty('view')) ||
 			(Array.isArray(item) && item[0].view && !item[0].relation)
 		) {
-			const items = Array.isArray(item) ? item : [item];
+			const items = Array.isArray(item) ? item : [item]
 			for (var z = 0; z < items.length; z++) {
-				item = items[z];
-				const viewRange = item === ',' ? [] : item.view ? _getRange(item.view, item.range) : [null];
+				item = items[z]
+				const viewRange = item === ',' ? [] : item.view ? _getRange(item.view, item.range) : [null]
 				for (var r = 0; r < viewRange.length; r++) {
-					const curView = viewRange[r];
-					curViews.push(curView);
+					const curView = viewRange[r]
+					curViews.push(curView)
 
 					//
 					// Add this view to the collection of subViews
 					//
 					if (curView !== stackView) {
-						subViews.push(curView);
+						subViews.push(curView)
 						// FIXME
 						// @ts-expect-error
-						subView = context.subViews[curView];
+						subView = context.subViews[curView]
 						if (!subView) {
-							subView = {orientations: 0};
+							subView = {orientations: 0}
 							// FIXME
 							// @ts-expect-error
-							context.subViews[curView] = subView;
+							context.subViews[curView] = subView
 						}
-						subView.orientations = subView.orientations | context.orientation;
+						subView.orientations = subView.orientations | context.orientation
 						if (subView.stack) {
-							_processStackView(context, curView, subView);
+							_processStackView(context, curView, subView)
 						}
 					}
 
@@ -269,23 +269,21 @@ function _processCascade(context, cascade, parentItem) {
 					if (context.prevViews !== undefined && curView !== undefined && context.relation) {
 						if (context.relation.relation !== 'none') {
 							for (var p = 0; p < context.prevViews.length; p++) {
-								const prevView = context.prevViews[p];
+								const prevView = context.prevViews[p]
 								switch (context.orientation) {
 									case Orientation.HORIZONTAL:
-										context.prevAttr = prevView !== stackView ? Attribute.RIGHT : Attribute.LEFT;
-										context.curAttr = curView !== stackView ? Attribute.LEFT : Attribute.RIGHT;
-										break;
+										context.prevAttr = prevView !== stackView ? Attribute.RIGHT : Attribute.LEFT
+										context.curAttr = curView !== stackView ? Attribute.LEFT : Attribute.RIGHT
+										break
 									case Orientation.VERTICAL:
-										context.prevAttr = prevView !== stackView ? Attribute.BOTTOM : Attribute.TOP;
-										context.curAttr = curView !== stackView ? Attribute.TOP : Attribute.BOTTOM;
-										break;
+										context.prevAttr = prevView !== stackView ? Attribute.BOTTOM : Attribute.TOP
+										context.curAttr = curView !== stackView ? Attribute.TOP : Attribute.BOTTOM
+										break
 									case Orientation.ZINDEX:
-										context.prevAttr = Attribute.ZINDEX;
-										context.curAttr = Attribute.ZINDEX;
-										context.relation.constant = !prevView
-											? 0
-											: context.relation.constant || 'default';
-										break;
+										context.prevAttr = Attribute.ZINDEX
+										context.curAttr = Attribute.ZINDEX
+										context.relation.constant = !prevView ? 0 : context.relation.constant || 'default'
+										break
 								}
 								context.constraints.push({
 									view1: prevView,
@@ -299,7 +297,7 @@ function _processCascade(context, cascade, parentItem) {
 											? context.relation.constant
 											: -context.relation.constant,
 									priority: context.relation.priority,
-								});
+								})
 							}
 						}
 					}
@@ -307,16 +305,16 @@ function _processCascade(context, cascade, parentItem) {
 					//
 					// Process view size constraints
 					//
-					const constraints = item.constraints;
+					const constraints = item.constraints
 					if (constraints) {
 						for (var n = 0; n < constraints.length; n++) {
-							context.prevAttr = context.horizontal ? Attribute.WIDTH : Attribute.HEIGHT;
+							context.prevAttr = context.horizontal ? Attribute.WIDTH : Attribute.HEIGHT
 							context.curAttr =
 								constraints[n].view || constraints[n].multiplier
 									? constraints[n].attribute || context.prevAttr
 									: constraints[n].variable
 									? Attribute.VARIABLE
-									: Attribute.CONST;
+									: Attribute.CONST
 							context.constraints.push({
 								view1: curView,
 								attr1: context.prevAttr,
@@ -326,7 +324,7 @@ function _processCascade(context, cascade, parentItem) {
 								multiplier: constraints[n].multiplier,
 								constant: constraints[n].constant,
 								priority: constraints[n].priority,
-							});
+							})
 						}
 					}
 
@@ -334,47 +332,47 @@ function _processCascade(context, cascade, parentItem) {
 					// Process cascaded data (child stack-views)
 					//
 					if (item.cascade) {
-						_processCascade(context, item.cascade, item);
+						_processCascade(context, item.cascade, item)
 					}
 				}
 			}
 		} else if (item !== ',') {
-			context.prevViews = curViews;
-			curViews = [];
-			context.relation = item[0];
+			context.prevViews = curViews
+			curViews = []
+			context.relation = item[0]
 			if (context.prevViews !== undefined) {
 				if (context.relation.equalSpacing) {
-					_processEqualSpacer(context, stackView);
+					_processEqualSpacer(context, stackView)
 				}
 				if (context.relation.multiplier) {
-					_processProportionalSpacer(context, stackView);
+					_processProportionalSpacer(context, stackView)
 				}
 			}
 		}
 	}
 
 	if (stackView) {
-		subView = context.subViews[stackView];
+		subView = context.subViews[stackView]
 		if (!subView) {
-			subView = {orientations: context.orientation};
-			context.subViews[stackView] = subView;
+			subView = {orientations: context.orientation}
+			context.subViews[stackView] = subView
 		} else if (subView.stack) {
-			const err = new Error('A stack named "' + stackView + '" has already been created');
+			const err = new Error('A stack named "' + stackView + '" has already been created')
 			// FIXME
 			// @ts-expect-error
-			err.column = parentItem.$parserOffset + 1;
-			throw err;
+			err.column = parentItem.$parserOffset + 1
+			throw err
 		}
 		subView.stack = {
 			orientation: context.orientation,
 			processedOrientations: context.orientation,
 			subViews: subViews,
-		};
-		_processStackView(context, stackView, subView);
+		}
+		_processStackView(context, stackView, subView)
 	}
 }
 
-const metaInfoCategories = ['viewport', 'spacing', 'colors', 'shapes', 'widths', 'heights'];
+const metaInfoCategories = ['viewport', 'spacing', 'colors', 'shapes', 'widths', 'heights']
 
 /**
  * VisualFormat
@@ -397,28 +395,28 @@ class VisualFormat {
 	 */
 	static parseLine(visualFormat, options) {
 		if (visualFormat.length === 0 || (options && options.extended && visualFormat.indexOf('//') === 0)) {
-			return [];
+			return []
 		}
-		const res = options && options.extended ? parserExt.parse(visualFormat) : parser.parse(visualFormat);
+		const res = options && options.extended ? parserExt.parse(visualFormat) : parser.parse(visualFormat)
 		if (options && options.outFormat === 'raw') {
-			return [res];
+			return [res]
 		}
 		let context: {
-			constraints: any[];
-			lineIndex: number;
-			subViews: {};
-			orientation?: number;
-			horizontal?: boolean;
+			constraints: any[]
+			lineIndex: number
+			subViews: {}
+			orientation?: number
+			horizontal?: boolean
 		} = {
 			constraints: [],
 			lineIndex: (options ? options.lineIndex : undefined) || 1,
 			subViews: (options ? options.subViews : undefined) || {},
-		};
+		}
 		if (res.type === 'attribute') {
 			for (let n = 0; n < res.attributes.length; n++) {
-				const attr = res.attributes[n];
+				const attr = res.attributes[n]
 				for (let m = 0; m < attr.predicates.length; m++) {
-					const predicate = attr.predicates[m];
+					const predicate = attr.predicates[m]
 					context.constraints.push({
 						view1: res.view,
 						attr1: attr.attr,
@@ -428,39 +426,39 @@ class VisualFormat {
 						multiplier: predicate.multiplier,
 						constant: predicate.constant,
 						priority: predicate.priority,
-					});
+					})
 				}
 			}
 		} else {
 			switch (res.orientation) {
 				case 'horizontal':
-					context.orientation = Orientation.HORIZONTAL;
-					context.horizontal = true;
-					_processCascade(context, res.cascade, null);
-					break;
+					context.orientation = Orientation.HORIZONTAL
+					context.horizontal = true
+					_processCascade(context, res.cascade, null)
+					break
 				case 'vertical':
-					context.orientation = Orientation.VERTICAL;
-					_processCascade(context, res.cascade, null);
-					break;
+					context.orientation = Orientation.VERTICAL
+					_processCascade(context, res.cascade, null)
+					break
 				case 'horzvert':
-					context.orientation = Orientation.HORIZONTAL;
-					context.horizontal = true;
-					_processCascade(context, res.cascade, null);
+					context.orientation = Orientation.HORIZONTAL
+					context.horizontal = true
+					_processCascade(context, res.cascade, null)
 					context = {
 						constraints: context.constraints,
 						lineIndex: context.lineIndex,
 						subViews: context.subViews,
 						orientation: Orientation.VERTICAL,
-					};
-					_processCascade(context, res.cascade, null);
-					break;
+					}
+					_processCascade(context, res.cascade, null)
+					break
 				case 'zIndex':
-					context.orientation = Orientation.ZINDEX;
-					_processCascade(context, res.cascade, null);
-					break;
+					context.orientation = Orientation.ZINDEX
+					_processCascade(context, res.cascade, null)
+					break
 			}
 		}
-		return context.constraints;
+		return context.constraints
 	}
 
 	/**
@@ -478,54 +476,54 @@ class VisualFormat {
 	 * @return {Array} Array of constraint definitions.
 	 */
 	static parse(visualFormat, options) {
-		const lineSeparator = options && options.lineSeparator ? options.lineSeparator : '\n';
+		const lineSeparator = options && options.lineSeparator ? options.lineSeparator : '\n'
 		if (!Array.isArray(visualFormat) && visualFormat.indexOf(lineSeparator) < 0) {
 			try {
-				return this.parseLine(visualFormat, options);
+				return this.parseLine(visualFormat, options)
 			} catch (err) {
 				// @ts-ignore
-				err.source = visualFormat;
-				throw err;
+				err.source = visualFormat
+				throw err
 			}
 		}
 
 		// Decompose visual-format into an array of strings, and within those strings
 		// search for line-endings, and treat each line as a seperate visual-format.
-		visualFormat = Array.isArray(visualFormat) ? visualFormat : [visualFormat];
-		let lines;
-		let constraints: any[] = [];
-		let lineIndex = 0;
-		let line;
+		visualFormat = Array.isArray(visualFormat) ? visualFormat : [visualFormat]
+		let lines
+		let constraints: any[] = []
+		let lineIndex = 0
+		let line
 		const parseOptions = {
 			lineIndex: lineIndex,
 			extended: options && options.extended,
 			strict: options && options.strict !== undefined ? options.strict : true,
 			outFormat: options ? options.outFormat : undefined,
 			subViews: {},
-		};
+		}
 		try {
 			for (var i = 0; i < visualFormat.length; i++) {
-				lines = visualFormat[i].split(lineSeparator);
+				lines = visualFormat[i].split(lineSeparator)
 				for (var j = 0; j < lines.length; j++) {
-					line = lines[j];
-					lineIndex++;
-					parseOptions.lineIndex = lineIndex;
+					line = lines[j]
+					lineIndex++
+					parseOptions.lineIndex = lineIndex
 					if (!parseOptions.strict) {
-						line = line.trim();
+						line = line.trim()
 					}
 					if (parseOptions.strict || line.length) {
-						constraints = constraints.concat(this.parseLine(line, parseOptions));
+						constraints = constraints.concat(this.parseLine(line, parseOptions))
 					}
 				}
 			}
 		} catch (err) {
 			// @ts-ignore
-			err.source = line;
+			err.source = line
 			// @ts-ignore
-			err.line = lineIndex;
-			throw err;
+			err.line = lineIndex
+			throw err
 		}
-		return constraints;
+		return constraints
 	}
 
 	/**
@@ -568,105 +566,105 @@ class VisualFormat {
 	 * @return {Object} meta-info
 	 */
 	static parseMetaInfo(visualFormat, options?: any) {
-		const lineSeparator = options && options.lineSeparator ? options.lineSeparator : '\n';
-		const prefix = options ? options.prefix : undefined;
-		visualFormat = Array.isArray(visualFormat) ? visualFormat : [visualFormat];
+		const lineSeparator = options && options.lineSeparator ? options.lineSeparator : '\n'
+		const prefix = options ? options.prefix : undefined
+		visualFormat = Array.isArray(visualFormat) ? visualFormat : [visualFormat]
 		const metaInfo: {
-			viewport?: Record<string, any>;
-			widths?: Record<string, any>;
-			heights?: Record<string, any>;
-			spacing?: any;
-		} = {};
-		var key;
+			viewport?: Record<string, any>
+			widths?: Record<string, any>
+			heights?: Record<string, any>
+			spacing?: any
+		} = {}
+		var key
 		for (var k = 0; k < visualFormat.length; k++) {
-			const lines = visualFormat[k].split(lineSeparator);
+			const lines = visualFormat[k].split(lineSeparator)
 			for (var i = 0; i < lines.length; i++) {
-				const line = lines[i];
+				const line = lines[i]
 				for (var c = 0; c < metaInfoCategories.length; c++) {
 					for (var s = 0; s < (prefix ? 2 : 1); s++) {
-						const category = metaInfoCategories[c];
-						const prefixedCategory = (s === 0 ? '' : prefix) + category;
+						const category = metaInfoCategories[c]
+						const prefixedCategory = (s === 0 ? '' : prefix) + category
 						if (line.indexOf('//' + prefixedCategory + ' ') === 0) {
-							const items = line.substring(3 + prefixedCategory.length).split(' ');
+							const items = line.substring(3 + prefixedCategory.length).split(' ')
 							for (var j = 0; j < items.length; j++) {
-								metaInfo[category] = metaInfo[category] || {};
-								const item = items[j].split(':');
-								const names = _getRange(item[0], true);
+								metaInfo[category] = metaInfo[category] || {}
+								const item = items[j].split(':')
+								const names = _getRange(item[0], true)
 								for (var r = 0; r < names.length; r++) {
-									metaInfo[category][names[r]] = item.length > 1 ? item[1] : '';
+									metaInfo[category][names[r]] = item.length > 1 ? item[1] : ''
 								}
 							}
 						} else if (line.indexOf('//' + prefixedCategory + ':') === 0) {
-							metaInfo[category] = line.substring(3 + prefixedCategory.length);
+							metaInfo[category] = line.substring(3 + prefixedCategory.length)
 						}
 					}
 				}
 			}
 		}
 		if (metaInfo.viewport) {
-			const viewport = metaInfo.viewport;
-			var aspectRatio = viewport['aspect-ratio'];
+			const viewport = metaInfo.viewport
+			var aspectRatio = viewport['aspect-ratio']
 			if (aspectRatio) {
-				aspectRatio = aspectRatio.split('/');
-				viewport['aspect-ratio'] = parseInt(aspectRatio[0]) / parseInt(aspectRatio[1]);
+				aspectRatio = aspectRatio.split('/')
+				viewport['aspect-ratio'] = parseInt(aspectRatio[0]) / parseInt(aspectRatio[1])
 			}
 			if (viewport.height !== undefined) {
-				viewport.height = viewport.height === 'intrinsic' ? true : parseInt(viewport.height);
+				viewport.height = viewport.height === 'intrinsic' ? true : parseInt(viewport.height)
 			}
 			if (viewport.width !== undefined) {
-				viewport.width = viewport.width === 'intrinsic' ? true : parseInt(viewport.width);
+				viewport.width = viewport.width === 'intrinsic' ? true : parseInt(viewport.width)
 			}
 			if (viewport['max-height'] !== undefined) {
-				viewport['max-height'] = parseInt(viewport['max-height']);
+				viewport['max-height'] = parseInt(viewport['max-height'])
 			}
 			if (viewport['max-width'] !== undefined) {
-				viewport['max-width'] = parseInt(viewport['max-width']);
+				viewport['max-width'] = parseInt(viewport['max-width'])
 			}
 			if (viewport['min-height'] !== undefined) {
-				viewport['min-height'] = parseInt(viewport['min-height']);
+				viewport['min-height'] = parseInt(viewport['min-height'])
 			}
 			if (viewport['min-width'] !== undefined) {
-				viewport['min-width'] = parseInt(viewport['min-width']);
+				viewport['min-width'] = parseInt(viewport['min-width'])
 			}
 		}
 		if (metaInfo.widths) {
 			for (key in metaInfo.widths) {
-				const width = metaInfo.widths[key] === 'intrinsic' ? true : parseInt(metaInfo.widths[key]);
-				metaInfo.widths[key] = width;
+				const width = metaInfo.widths[key] === 'intrinsic' ? true : parseInt(metaInfo.widths[key])
+				metaInfo.widths[key] = width
 				// FIXME
 				// @ts-expect-error
 				if (width === undefined || isNaN(width)) {
-					delete metaInfo.widths[key];
+					delete metaInfo.widths[key]
 				}
 			}
 		}
 		if (metaInfo.heights) {
 			for (key in metaInfo.heights) {
-				const height = metaInfo.heights[key] === 'intrinsic' ? true : parseInt(metaInfo.heights[key]);
-				metaInfo.heights[key] = height;
+				const height = metaInfo.heights[key] === 'intrinsic' ? true : parseInt(metaInfo.heights[key])
+				metaInfo.heights[key] = height
 				// FIXME
 				// @ts-expect-error
 				if (height === undefined || isNaN(height)) {
-					delete metaInfo.heights[key];
+					delete metaInfo.heights[key]
 				}
 			}
 		}
 		if (metaInfo.spacing) {
-			const value = JSON.parse(metaInfo.spacing);
-			metaInfo.spacing = value;
+			const value = JSON.parse(metaInfo.spacing)
+			metaInfo.spacing = value
 			if (Array.isArray(value)) {
 				for (var sIdx = 0, len = value.length; sIdx < len; sIdx++) {
 					if (isNaN(value[sIdx])) {
-						delete metaInfo.spacing;
-						break;
+						delete metaInfo.spacing
+						break
 					}
 				}
 			} else if (value === undefined || isNaN(value)) {
-				delete metaInfo.spacing;
+				delete metaInfo.spacing
 			}
 		}
-		return metaInfo;
+		return metaInfo
 	}
 }
 
-export default VisualFormat;
+export default VisualFormat

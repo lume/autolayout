@@ -1,9 +1,9 @@
-import * as kiwi from '@lume/kiwi';
-import Attribute from './Attribute.js';
-import Relation from './Relation.js';
-import SubView from './SubView.js';
+import * as kiwi from '@lume/kiwi'
+import Attribute from './Attribute.js'
+import Relation from './Relation.js'
+import SubView from './SubView.js'
 
-const defaultPriorityStrength = kiwi.Strength.create(0, 1000, 1000);
+const defaultPriorityStrength = kiwi.Strength.create(0, 1000, 1000)
 
 /**
  * AutoLayout API reference.
@@ -25,12 +25,12 @@ const defaultPriorityStrength = kiwi.Strength.create(0, 1000, 1000);
  * @module AutoLayout
  */
 class View {
-	declare _solver: kiwi.Solver;
-	declare _subViews: {};
-	declare _parentSubView: SubView;
-	declare _spacing?: number | number[];
-	declare _spacingVars?: kiwi.Variable[];
-	declare _spacingExpr?: kiwi.Expression[];
+	declare _solver: kiwi.Solver
+	declare _subViews: {}
+	declare _parentSubView: SubView
+	declare _spacing?: number | number[]
+	declare _spacingVars?: kiwi.Variable[]
+	declare _spacingExpr?: kiwi.Expression[]
 
 	/**
 	 * @class View
@@ -41,19 +41,19 @@ class View {
 	 * @param {Array} [options.constraints] One or more constraint definitions (see `addConstraints`).
 	 */
 	constructor(options) {
-		this._solver = new kiwi.Solver();
-		this._subViews = {};
+		this._solver = new kiwi.Solver()
+		this._subViews = {}
 		this._parentSubView = new SubView({
 			solver: this._solver,
-		});
-		this.setSpacing(options && options.spacing !== undefined ? options.spacing : 8);
+		})
+		this.setSpacing(options && options.spacing !== undefined ? options.spacing : 8)
 		//this.constraints = [];
 		if (options) {
 			if (options.width !== undefined || options.height !== undefined) {
-				this.setSize(options.width, options.height);
+				this.setSize(options.width, options.height)
 			}
 			if (options.constraints) {
-				this.addConstraints(options.constraints);
+				this.addConstraints(options.constraints)
 			}
 		}
 	}
@@ -66,9 +66,9 @@ class View {
 	 * @return {View} this
 	 */
 	setSize(width, height /*, depth*/) {
-		this._parentSubView.intrinsicWidth = width;
-		this._parentSubView.intrinsicHeight = height;
-		return this;
+		this._parentSubView.intrinsicWidth = width
+		this._parentSubView.intrinsicHeight = height
+		return this
 	}
 
 	/**
@@ -77,7 +77,7 @@ class View {
 	 * @type {Number}
 	 */
 	get width() {
-		return this._parentSubView.intrinsicWidth;
+		return this._parentSubView.intrinsicWidth
 	}
 
 	/**
@@ -86,7 +86,7 @@ class View {
 	 * @type {Number}
 	 */
 	get height() {
-		return this._parentSubView.intrinsicHeight;
+		return this._parentSubView.intrinsicHeight
 	}
 
 	/**
@@ -110,7 +110,7 @@ class View {
 	 * @type {Number}
 	 */
 	get fittingWidth() {
-		return this._parentSubView.width;
+		return this._parentSubView.width
 	}
 
 	/**
@@ -123,7 +123,7 @@ class View {
 	 * @type {Number}
 	 */
 	get fittingHeight() {
-		return this._parentSubView.height;
+		return this._parentSubView.height
 	}
 
 	/**
@@ -158,56 +158,56 @@ class View {
 	 */
 	setSpacing(spacing: number | number[]) {
 		if (!Array.isArray(spacing)) {
-			spacing = [spacing, spacing, spacing, spacing, spacing, spacing, 1];
+			spacing = [spacing, spacing, spacing, spacing, spacing, spacing, 1]
 		} else {
 			// normalize spacing into array: [top, right, bottom, left, horz, vert, z-index]
 			switch (spacing.length) {
 				case 1:
-					spacing = [spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], 1];
-					break;
+					spacing = [spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], spacing[0], 1]
+					break
 				case 2:
-					spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], 1];
-					break;
+					spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], 1]
+					break
 				case 3:
-					spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], spacing[2]];
-					break;
+					spacing = [spacing[1], spacing[0], spacing[1], spacing[0], spacing[0], spacing[1], spacing[2]]
+					break
 				case 6:
-					spacing = [spacing[0], spacing[1], spacing[2], spacing[3], spacing[4], spacing[5], 1];
-					break;
+					spacing = [spacing[0], spacing[1], spacing[2], spacing[3], spacing[4], spacing[5], 1]
+					break
 				case 7:
-					break;
+					break
 				default:
-					throw 'Invalid spacing syntax';
+					throw 'Invalid spacing syntax'
 			}
 		}
 		if (!this._compareSpacing(this._spacing, spacing)) {
-			this._spacing = spacing;
+			this._spacing = spacing
 			// update spacing variables
 			if (this._spacingVars) {
 				for (var i = 0; i < this._spacingVars.length; i++) {
 					if (this._spacingVars[i]) {
-						this._solver.suggestValue(this._spacingVars[i], this._spacing![i]);
+						this._solver.suggestValue(this._spacingVars[i], this._spacing![i])
 					}
 				}
-				this._solver.updateVariables();
+				this._solver.updateVariables()
 			}
 		}
-		return this;
+		return this
 	}
 
 	_compareSpacing(old, newz) {
 		if (old === newz) {
-			return true;
+			return true
 		}
 		if (!old || !newz) {
-			return false;
+			return false
 		}
 		for (var i = 0; i < 7; i++) {
 			if (old[i] !== newz[i]) {
-				return false;
+				return false
 			}
 		}
-		return true;
+		return true
 	}
 
 	/**
@@ -231,9 +231,9 @@ class View {
 	 * @return {View} this
 	 */
 	addConstraint(constraint) {
-		this._addConstraint(constraint);
-		this._solver.updateVariables();
-		return this;
+		this._addConstraint(constraint)
+		this._solver.updateVariables()
+		return this
 	}
 
 	/**
@@ -258,64 +258,64 @@ class View {
 	 */
 	addConstraints(constraints) {
 		for (var j = 0; j < constraints.length; j++) {
-			this._addConstraint(constraints[j]);
+			this._addConstraint(constraints[j])
 		}
-		this._solver.updateVariables();
-		return this;
+		this._solver.updateVariables()
+		return this
 	}
 
 	_addConstraint(constraint) {
 		//this.constraints.push(constraint);
-		let relation;
-		const multiplier = constraint.multiplier !== undefined ? constraint.multiplier : 1;
-		let constant = constraint.constant !== undefined ? constraint.constant : 0;
+		let relation
+		const multiplier = constraint.multiplier !== undefined ? constraint.multiplier : 1
+		let constant = constraint.constant !== undefined ? constraint.constant : 0
 		if (constant === 'default') {
-			constant = this._getSpacing(constraint);
+			constant = this._getSpacing(constraint)
 		}
-		const attr1 = this._getSubView(constraint.view1)._getAttr(constraint.attr1);
-		let attr2;
+		const attr1 = this._getSubView(constraint.view1)._getAttr(constraint.attr1)
+		let attr2
 		if (constraint.attr2 === Attribute.CONST) {
-			attr2 = this._getConst(undefined, constraint.constant);
+			attr2 = this._getConst(undefined, constraint.constant)
 		} else {
-			attr2 = this._getSubView(constraint.view2)._getAttr(constraint.attr2);
+			attr2 = this._getSubView(constraint.view2)._getAttr(constraint.attr2)
 			if (multiplier !== 1 && constant) {
-				attr2 = attr2.multiply(multiplier).plus(constant);
+				attr2 = attr2.multiply(multiplier).plus(constant)
 			} else if (constant) {
-				attr2 = attr2.plus(constant);
+				attr2 = attr2.plus(constant)
 			} else if (multiplier !== 1) {
-				attr2 = attr2.multiply(multiplier);
+				attr2 = attr2.multiply(multiplier)
 			}
 		}
 		const strength =
 			constraint.priority !== undefined && constraint.priority < 1000
 				? kiwi.Strength.create(0, constraint.priority, 1000)
-				: defaultPriorityStrength;
+				: defaultPriorityStrength
 		switch (constraint.relation) {
 			case Relation.EQU:
-				relation = new kiwi.Constraint(attr1, kiwi.Operator.Eq, attr2, strength);
-				break;
+				relation = new kiwi.Constraint(attr1, kiwi.Operator.Eq, attr2, strength)
+				break
 			case Relation.GEQ:
-				relation = new kiwi.Constraint(attr1, kiwi.Operator.Ge, attr2, strength);
-				break;
+				relation = new kiwi.Constraint(attr1, kiwi.Operator.Ge, attr2, strength)
+				break
 			case Relation.LEQ:
-				relation = new kiwi.Constraint(attr1, kiwi.Operator.Le, attr2, strength);
-				break;
+				relation = new kiwi.Constraint(attr1, kiwi.Operator.Le, attr2, strength)
+				break
 			default:
-				throw 'Invalid relation specified: ' + constraint.relation;
+				throw 'Invalid relation specified: ' + constraint.relation
 		}
-		this._solver.addConstraint(relation);
+		this._solver.addConstraint(relation)
 	}
 
 	_getSpacing(constraint) {
-		let index = 4;
+		let index = 4
 		if (!constraint.view1 && constraint.attr1 === 'left') {
-			index = 3;
+			index = 3
 		} else if (!constraint.view1 && constraint.attr1 === 'top') {
-			index = 0;
+			index = 0
 		} else if (!constraint.view2 && constraint.attr2 === 'right') {
-			index = 1;
+			index = 1
 		} else if (!constraint.view2 && constraint.attr2 === 'bottom') {
-			index = 2;
+			index = 2
 		} else {
 			switch (constraint.attr1) {
 				case 'left':
@@ -323,53 +323,53 @@ class View {
 				case 'centerX':
 				case 'leading':
 				case 'trailing':
-					index = 4;
-					break;
+					index = 4
+					break
 				case 'zIndex':
-					index = 6;
-					break;
+					index = 6
+					break
 				default:
-					index = 5;
+					index = 5
 			}
 		}
-		this._spacingVars = this._spacingVars || new Array(7);
-		this._spacingExpr = this._spacingExpr || new Array(7);
+		this._spacingVars = this._spacingVars || new Array(7)
+		this._spacingExpr = this._spacingExpr || new Array(7)
 		if (!this._spacingVars[index]) {
-			this._spacingVars[index] = new kiwi.Variable();
-			this._solver.addEditVariable(this._spacingVars[index], kiwi.Strength.create(999, 1000, 1000));
-			this._spacingExpr[index] = this._spacingVars[index].multiply(-1);
-			this._solver.suggestValue(this._spacingVars[index], this._spacing![index]);
+			this._spacingVars[index] = new kiwi.Variable()
+			this._solver.addEditVariable(this._spacingVars[index], kiwi.Strength.create(999, 1000, 1000))
+			this._spacingExpr[index] = this._spacingVars[index].multiply(-1)
+			this._solver.suggestValue(this._spacingVars[index], this._spacing![index])
 		}
-		return this._spacingExpr[index];
+		return this._spacingExpr[index]
 	}
 
 	_getSubView(viewName) {
 		if (!viewName) {
-			return this._parentSubView;
+			return this._parentSubView
 		} else if (viewName.name) {
 			this._subViews[viewName.name] =
 				this._subViews[viewName.name] ||
 				new SubView({
 					name: viewName.name,
 					solver: this._solver,
-				});
-			this._subViews[viewName.name]._type = this._subViews[viewName.name]._type || viewName.type;
-			return this._subViews[viewName.name];
+				})
+			this._subViews[viewName.name]._type = this._subViews[viewName.name]._type || viewName.type
+			return this._subViews[viewName.name]
 		} else {
 			this._subViews[viewName] =
 				this._subViews[viewName] ||
 				new SubView({
 					name: viewName,
 					solver: this._solver,
-				});
-			return this._subViews[viewName];
+				})
+			return this._subViews[viewName]
 		}
 	}
 
 	_getConst(name, value) {
-		const vr = new kiwi.Variable();
-		this._solver.addConstraint(new kiwi.Constraint(vr, kiwi.Operator.Eq, value));
-		return vr;
+		const vr = new kiwi.Variable()
+		this._solver.addConstraint(new kiwi.Constraint(vr, kiwi.Operator.Eq, value))
+		return vr
 	}
 
 	/**
@@ -378,7 +378,7 @@ class View {
 	 * @type {Object.SubView}
 	 */
 	get subViews() {
-		return this._subViews;
+		return this._subViews
 	}
 
 	/**
@@ -391,4 +391,4 @@ class View {
 	//}
 }
 
-export default View;
+export default View

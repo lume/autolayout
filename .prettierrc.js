@@ -1,12 +1,11 @@
 export default {
 	useTabs: true,
-	tabWidth: 4,
-	semi: true,
+	semi: false,
 	singleQuote: true,
 	trailingComma: 'all',
 	bracketSpacing: false,
 	printWidth: 120,
 	arrowParens: 'avoid',
 
-	overrides: [{files: '*.md', options: {tabWidth: 2}}],
-};
+	overrides: [{files: ['*.md', '*.yml'], options: {useTabs: false, tabWidth: 2}}],
+}

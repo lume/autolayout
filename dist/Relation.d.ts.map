@@ -1,1 +1,1 @@
-{"version":3,"file":"Relation.d.ts","sourceRoot":"","sources":["../src/Relation.ts"],"names":[],"mappings":"AAAA;;;GAGG;AACH,QAAA,IAAI,QAAQ;IACX,yBAAyB;;IAEzB,YAAY;;IAEZ,4BAA4B;;CAE5B,CAAC;AACF,eAAe,QAAQ,CAAC"}
+{"version":3,"file":"Relation.d.ts","sourceRoot":"","sources":["../src/Relation.ts"],"names":[],"mappings":"AAAA;;;GAGG;AACH,QAAA,IAAI,QAAQ;IACX,yBAAyB;;IAEzB,YAAY;;IAEZ,4BAA4B;;CAE5B,CAAA;AACD,eAAe,QAAQ,CAAA"}

@@ -18,5 +18,5 @@ var Attribute = {
     TRAILING: 'trailing'*/
 	/** Used by the extended VFL syntax. */
 	ZINDEX: 'zIndex',
-};
-export default Attribute;
+}
+export default Attribute

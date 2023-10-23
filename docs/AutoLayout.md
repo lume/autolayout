@@ -112,12 +112,12 @@ based on the content, use:
 
 ```javascript
 var view = new AutoLayout.View({
-	constraints: VisualFormat.parse('|-[view1]-[view2]-'),
-	spacing: 20,
-});
-view.subViews.view1.intrinsicWidth = 100;
-view.subViews.view2.intrinsicWidth = 100;
-console.log('fittingWidth: ' + view.fittingWidth); // 260
+  constraints: VisualFormat.parse('|-[view1]-[view2]-'),
+  spacing: 20,
+})
+view.subViews.view1.intrinsicWidth = 100
+view.subViews.view2.intrinsicWidth = 100
+console.log('fittingWidth: ' + view.fittingWidth) // 260
 ```
 
 **Kind**: instance property of <code>[View](#module_AutoLayout..View)</code>  
@@ -180,10 +180,10 @@ Instead of using the full spacing syntax, it is also possible to use shorthand n
 Examples:
 
 ```javascript
-view.setSpacing(10); // horizontal & vertical spacing 10
-view.setSpacing([10, 15, 2]); // horizontal spacing 10, vertical spacing 15, z-axis spacing 2
-view.setSpacing([10, 20, 10, 20, 5, 5]); // top, right, bottom, left, horizontal, vertical
-view.setSpacing([10, 20, 10, 20, 5, 5, 1]); // top, right, bottom, left, horizontal, vertical, z
+view.setSpacing(10) // horizontal & vertical spacing 10
+view.setSpacing([10, 15, 2]) // horizontal spacing 10, vertical spacing 15, z-axis spacing 2
+view.setSpacing([10, 20, 10, 20, 5, 5]) // top, right, bottom, left, horizontal, vertical
+view.setSpacing([10, 20, 10, 20, 5, 5, 1]) // top, right, bottom, left, horizontal, vertical, z
 ```
 
 **Kind**: instance method of <code>[View](#module_AutoLayout..View)</code>  
@@ -322,10 +322,10 @@ Use this property to explicitely set the width of the sub-view, e.g.:
 
 ```javascript
 var view = new AutoLayout.View(AutoLayout.VisualFormat.parse('|[child1][child2]|'), {
-	width: 500,
-});
-view.subViews.child1.intrinsicWidth = 100;
-console.log('child2 width: ' + view.subViews.child2.width); // 400
+  width: 500,
+})
+view.subViews.child1.intrinsicWidth = 100
+console.log('child2 width: ' + view.subViews.child2.width) // 400
 ```
 
 **Kind**: instance property of <code>[SubView](#module_AutoLayout..SubView)</code>  

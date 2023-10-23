@@ -270,9 +270,7 @@ function _processCascade(context, cascade, parentItem) {
                                     case Orientation.ZINDEX:
                                         context.prevAttr = Attribute.ZINDEX;
                                         context.curAttr = Attribute.ZINDEX;
-                                        context.relation.constant = !prevView
-                                            ? 0
-                                            : context.relation.constant || 'default';
+                                        context.relation.constant = !prevView ? 0 : context.relation.constant || 'default';
                                         break;
                                 }
                                 context.constraints.push({

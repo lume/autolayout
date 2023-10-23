@@ -9,5 +9,5 @@ var Relation = {
 	EQU: 'equ',
 	/** Greater than or equal */
 	GEQ: 'geq',
-};
-export default Relation;
+}
+export default Relation

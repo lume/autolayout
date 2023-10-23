@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 				dest: 'src/parser/parser.js',
 				options: {
 					wrapper: function (src, parser) {
-						return 'export default ' + parser + ';';
+						return 'export default ' + parser + ';'
 					},
 				},
 			},
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 				dest: 'src/parser/parserExt.js',
 				options: {
 					wrapper: function (src, parser) {
-						return 'export default ' + parser + ';';
+						return 'export default ' + parser + ';'
 					},
 				},
 			},
@@ -45,14 +45,14 @@ module.exports = function (grunt) {
 				dest: 'docs/AutoLayout.md',
 			},
 		},
-	});
+	})
 
 	// These plugins provide necessary tasks.
-	grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
-	grunt.loadNpmTasks('grunt-peg');
-	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-jsdoc-to-markdown')
+	grunt.loadNpmTasks('grunt-peg')
+	grunt.loadNpmTasks('grunt-contrib-concat')
 
 	// Tasks
-	grunt.registerTask('doc', ['concat', 'jsdoc2md']);
-	grunt.registerTask('parser', ['peg']);
-};
+	grunt.registerTask('doc', ['concat', 'jsdoc2md'])
+	grunt.registerTask('parser', ['peg'])
+}
