@@ -96,8 +96,8 @@ dependency kiwi. F.e.:
 <script type="importmap">
   {
     "imports": {
-      "@lume/autolayout": "../../dist/AutoLayout.js",
-      "@lume/kiwi": "../node_modules/@lume/kiwi/dist/kiwi.js"
+      "@lume/autolayout": "/node_modules/@lume/autolayout/dist/AutoLayout.js",
+      "@lume/kiwi": "/node_modules/@lume/kiwi/dist/kiwi.js"
     }
   }
 </script>
