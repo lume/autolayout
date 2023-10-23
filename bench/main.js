@@ -1,16 +1,11 @@
 /*global module:false*/
 /*eslint strict:false, quotes: [2, "single"] */
 
-var Benchmark = typeof window === 'undefined' ? require('benchmark') : window.Benchmark;
-
-async function getAutoLayout() {
-	if (typeof window === 'undefined') return (await import('../es/AutoLayout.js')).default;
-	else return window.AutoLayout;
-}
+var Benchmark = typeof window === 'undefined' ? (await import('benchmark')).default : window.Benchmark;
 
 main();
 async function main() {
-	const AutoLayout = await getAutoLayout();
+	const AutoLayout = await import('@lume/autolayout');
 
 	var logElement;
 	function log(message) {

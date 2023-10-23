@@ -1,14 +1,9 @@
 /*global describe, it*/
-var assert = typeof window === 'undefined' ? require('assert') : window.chai.assert;
-
-async function getAutoLayout() {
-	if (typeof window === 'undefined') return (await import('../es/AutoLayout.js')).default;
-	else return window.AutoLayout;
-}
+var assert = typeof window === 'undefined' ? (await import('assert')).default : window.chai.assert;
 
 describe('import AutoLayout', function () {
 	it('imports AutoLayout', async function () {
-		const AutoLayout = await getAutoLayout();
+		const AutoLayout = await import('@lume/autolayout');
 
 		var opts = {extended: true};
 		describe('ExtendedVisualFormat', function () {

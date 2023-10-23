@@ -3,20 +3,25 @@
 		<meta charset="utf-8" />
 		<title>Mocha Tests</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.css" />
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@lume/autolayout": "../../dist/AutoLayout.js",
+					"@lume/kiwi": "../node_modules/@lume/kiwi/dist/kiwi.js"
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div id="mocha"></div>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
-		<script>
+		<script type="module">
 			mocha.setup('bdd');
-		</script>
-		<script src="../node_modules/@lume/kiwi/lib/kiwi.min.js"></script>
-		<script type="text/javascript" src="../lib/autolayout.js"></script>
-		<script type="text/javascript" src="./VisualFormat.cjs"></script>
-		<script type="text/javascript" src="./ExtendedVisualFormat.cjs"></script>
-		<script type="text/javascript" src="./View.cjs"></script>
-		<script>
+
+			await Promise.all([import('./VisualFormat.js'), import('./ExtendedVisualFormat.js'), import('./View.js')]);
+
 			mocha.checkLeaks();
 			mocha.run();
 		</script>

@@ -2,6 +2,14 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Benchmark Tests</title>
+		<script type="importmap">
+			{
+				"imports": {
+					"@lume/autolayout": "../../dist/AutoLayout.js",
+					"@lume/kiwi": "../../node_modules/@lume/kiwi/dist/kiwi.js"
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<pre id="log" style="font-size: 16px"></pre>
@@ -10,8 +18,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.0/platform.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/benchmark/1.0.0/benchmark.js"></script>
 
-		<script src="../node_modules/@lume/kiwi/lib/kiwi.min.js"></script>
-		<script src="../lib/autolayout.js"></script>
-		<script src="./main.cjs"></script>
+		<script type="module">
+			import './main.js';
+		</script>
 	</body>
 </html>

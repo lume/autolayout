@@ -7,6 +7,15 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="stylesheet" type="text/css" href="styles.css" />
+
+		<script type="importmap">
+			{
+				"imports": {
+					"@lume/autolayout": "../../dist/AutoLayout.js",
+					"@lume/kiwi": "../../node_modules/@lume/kiwi/dist/kiwi.js"
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div id="left">
@@ -23,9 +32,7 @@
 			<div id="child5"><div>child5</div></div>
 		</div>
 		<script type="module">
-			import AutoLayout from '../es/AutoLayout.js';
-			window.AutoLayout = AutoLayout;
-			import('./main.js');
+			import './main.js';
 		</script>
 	</body>
 </html>

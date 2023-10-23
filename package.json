@@ -6,9 +6,9 @@
 		"type": "git",
 		"url": "git://github.com/lume/autolayout.git"
 	},
-	"main": "es/AutoLayout.js",
-	"types": "es/AutoLayout.d.ts",
 	"type": "module",
+	"main": "dist/AutoLayout.js",
+	"types": "dist/AutoLayout.d.ts",
 	"description": "Apple's Auto Layout and Visual Format Language for javascript (using cassowary constraints)",
 	"keywords": [
 		"autolayout",
@@ -32,8 +32,7 @@
 	},
 	"files": [
 		"src",
-		"lib",
-		"es",
+		"dist",
 		"LICENSE"
 	],
 	"devDependencies": {
@@ -59,20 +58,18 @@
 		"platform": "^1.3.1",
 		"prettier": "3.0.3",
 		"rimraf": "^3.0.2",
-		"rollup": "1.17.0",
-		"rollup-plugin-uglify": "6.0.2",
-		"typescript": "4.4.3"
+		"typescript": "5.2.2"
 	},
 	"dependencies": {
 		"@lume/kiwi": "^0.3.2"
 	},
 	"scripts": {
-		"build": "npm run clean && tsc && rollup -c",
-		"clean": "rimraf lib/ es/ tmp/",
+		"build": "tsc",
+		"clean": "rimraf dist/ tmp/",
 		"build:parser": "rimraf 'src/parser/*.js' && npm run grunt -- parser",
 		"test": "npm run lint && mocha",
 		"cov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -R",
-		"bench": "node bench/main.cjs",
+		"bench": "node bench/main.js",
 		"format": "npm run prettier",
 		"prettier": "prettier . --write",
 		"lint": "prettier . --check",

@@ -25,12 +25,12 @@ module.exports = function (grunt) {
 		concat: {
 			jsdoc2md: {
 				src: [
-					'es/View.js',
-					'es/SubView.js',
-					'es/VisualFormat.js',
-					'es/Attribute.js',
-					'es/Relation.js',
-					'es/Priority.js',
+					'dist/View.js',
+					'dist/SubView.js',
+					'dist/VisualFormat.js',
+					'dist/Attribute.js',
+					'dist/Relation.js',
+					'dist/Priority.js',
 				],
 				dest: 'tmp/concat.js',
 			},

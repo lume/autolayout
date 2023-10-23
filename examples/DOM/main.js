@@ -1,4 +1,4 @@
-var AutoLayout = window.AutoLayout;
+import AutoLayout from '@lume/autolayout';
 
 /**
  * Set the absolute size and position for a DOM element.

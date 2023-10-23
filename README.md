@@ -76,30 +76,17 @@ Include the library in your HTML project:
 
 ```html
 <script type="module">
-	import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/es/AutoLayout.js?module';
+	import AutoLayout from '//unpkg.com/@lume/autolayout@0.8.0/dist/AutoLayout.js?module';
 	// ...use AutoLayout here...
 </script>
 ```
 
-Or when using a bundler like Webpack or Rollup, use:
+Or when using a bundler like Webpack or Rollup, or [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), use:
 
 ```js
 import AutoLayout from '@lume/autolayout';
 // ...use AutoLayout here...
 ```
-
-<!--
-TODO: describe importing if already importing `lume`, f.e. LUME.AutoLayout
-```js
-import {AutoLayout} from 'lume'
-// ...use AutoLayout here...
-```
-or
-```js
-const AutoLayout = LUME.AutoLayout
-// ...use AutoLayout here...
-```
--->
 
 ### Using the API
 
