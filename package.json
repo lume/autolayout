@@ -75,8 +75,9 @@
 		"lint": "prettier . --check",
 		"doc": "npm run grunt -- doc && node scripts/docs-update-headings.js && prettier docs/AutoLayout.md --write",
 		"grunt": "grunt --gruntfile Gruntfile.cjs",
-		"release:patch": "npm run build && npm test && npm version patch --message 'v%s' && npm publish && git push --follow-tags",
-		"release:minor": "npm run build && npm test && npm version minor --message 'v%s' && npm publish && git push --follow-tags",
-		"release:major": "npm run build && npm test && npm version major --message 'v%s' && npm publish && git push --follow-tags"
+		"version": "npm run clean && npm run build && npm test && npm run bench && git add .",
+		"release:patch": "npm version --no-workspaces patch --message 'v%s' && npm publish && git push --follow-tags",
+		"release:minor": "npm version --no-workspaces minor --message 'v%s' && npm publish && git push --follow-tags",
+		"release:major": "npm version --no-workspaces major --message 'v%s' && npm publish && git push --follow-tags"
 	}
 }
