@@ -61,7 +61,7 @@
 		"typescript": "5.2.2"
 	},
 	"dependencies": {
-		"@lume/kiwi": "^0.3.2"
+		"@lume/kiwi": "^0.4.0"
 	},
 	"scripts": {
 		"build": "tsc",
