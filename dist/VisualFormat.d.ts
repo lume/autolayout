@@ -73,9 +73,9 @@ declare class VisualFormat {
      * @return {Object} meta-info
      */
     static parseMetaInfo(visualFormat: any, options?: any): {
-        viewport?: Record<string, any> | undefined;
-        widths?: Record<string, any> | undefined;
-        heights?: Record<string, any> | undefined;
+        viewport?: Record<string, any>;
+        widths?: Record<string, any>;
+        heights?: Record<string, any>;
         spacing?: any;
     };
 }
